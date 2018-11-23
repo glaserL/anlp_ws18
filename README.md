@@ -2,7 +2,9 @@
 
 Here is a nice image while this develops.
 
-<img src = "/img/mys.png" width = "800", class = "center">
+<p align = "center">
+<img src = "/img/mys.png" width = "400" align = "center">
+</p>
 
 ## Contents
 
