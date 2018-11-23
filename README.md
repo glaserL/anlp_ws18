@@ -19,4 +19,5 @@ Here is a nice image while this develops.
 Louis Glaser, Jules Hanel, Atreya Shankar
 
 Cognitive Systems 2018, Advanced Natural Language Processing (ANLP)
+
 University of Potsdam
