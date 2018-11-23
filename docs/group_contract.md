@@ -10,7 +10,7 @@
 
 Within the planning paper we will try to outline milestones as precisely as possible in order to keep a detailed schedule. We will meet **each Tuesday at 12 o'clock** after the ANLP class at Campus Golm. There we will discuss issues, new ideas and assign goals to each member. These should be finished until the next meeting in order to ensure constant improvement and avoid idle time.
 
-Each group member commits to either the weekly meeting or at least status reporting remotely. Skipping meetings or not meeting the milestones is fine, we ain't machines. However, repeatedly missing meetings and goals without reason, will lead to escalation to Edit.
+Each group member commits to either the weekly meeting or at least status reporting remotely. Skipping meetings or not meeting the milestones is fine, we ain't machines. When planning our project, we will explicitly define goals as mandatory and important or as strech goals. The project will not depend on these strech goals. In case someone of us drops out, we will ignore those strech goals to keep the work load manageable for two. 
 
 ## Technology Choices
 
