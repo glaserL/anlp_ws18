@@ -24,7 +24,7 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 ## Authors
 
-Louis Glaser, Jules Hanel, Atreya Shankar
+Luis Glaser, Jules Hanel, Atreya Shankar
 
 Cognitive Systems 2018, Advanced Natural Language Processing (ANLP)
 
