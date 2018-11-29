@@ -2,7 +2,7 @@
 
 ## Group Members
 * Atreya Shankar (🐌)
-* Jules Hanel (🐍)
+* Juliane Hanel (🐍)
 * Luis Glaser (🐿)
 
 
