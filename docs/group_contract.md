@@ -1,9 +1,9 @@
 # Group Contract
 
 ## Group Members
-* Atreya Shankar (AS)
-* Jules Hanel (JH)
-* Luis Glaser (LG)
+* Atreya Shankar (🐌)
+* Jules Hanel (🐍)
+* Luis Glaser (🐿)
 
 
 ## Workflow
