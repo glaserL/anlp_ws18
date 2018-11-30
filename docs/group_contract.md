@@ -24,3 +24,11 @@ For **progression tracking** we will use a dedicated `markdown` file within the 
 
 For **reference management** we will also use a dedicated git directory containing `.bib` files and/or `.pdf`s
 
+
+### Signature
+
+We all agree to the terms above.
+
+<u> 🐌 (Atreya Shankar), 🐍 (Juliane Hanel), 🐿 (Luis Glaser)</u>
+
+30, November 2018
