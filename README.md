@@ -6,8 +6,8 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 | Date Due | Key Event |
 | ------------- | ------------- |
-| **Dec. 14, 2018** | Group contract due |
-| Jan. 11, 2019 | Planning paper due |
+| Dec. 14, 2018 | Group contract due (done) |
+| **Jan. 11, 2019** | Planning paper due |
 | Feb. 12, 2019 | Project presentation |
 | Mar. 1, 2019 | Final project due |
 | Mar. 8, 2019 | Project report due |
@@ -27,5 +27,3 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 Luis Glaser, Jules Hanel, Atreya Shankar
 
 Cognitive Systems 2018, Advanced Natural Language Processing (ANLP)
-
-University of Potsdam
