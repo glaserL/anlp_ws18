@@ -3,17 +3,18 @@
 # information on utility of function
 usage() {
 	echo "Usage: $0 [-b base-file] [-d destination-file] ..."
-	echo
 	echo "Mandatory Arguments:"
 	echo "  -b      base-file"
 	echo "  -d      destination-file"
 	echo "Optional Arguments":
-	echo "  -s      song (regex)"
-	echo "  -y      year (regex)"
-	echo "  -a      artist (regex)"
-	echo "  -g      genre (regex)"
+	echo "  -s      song title"
+	echo "  -y      year of release"
+	echo "  -a      artist"
+	echo "  -g      genre"
 	echo "  -t      search for exact string matches"
-	echo "  -v      print entire vocabulary of data"
+	echo "  -v      print all metadata"
+	echo "Example:"
+	echo '  ./filter.sh -b "lyrics-2.csv" -d "test.txt" -g "pop"'
 	1>&2
 	exit 1;
 }
@@ -72,7 +73,7 @@ while getopts ":b:d:s:y:a:g:thv" option; do
 	;;
 	v)
 		if [ "x" != "x$base" ] && [ "x" != "x$dest" ]; then
-			cat $base | grep "^[0-9]*," >> $dest
+			cat $base | grep -E '^[0-9]*,.*["]' | cut -d '"' -f 1 >> $dest
 			exit 0
 		else
 			usage
@@ -127,6 +128,9 @@ linesShortened=$(gawk -F " " '{
                     else { printf "%s%s", (r)? r nxt : $i, (i == NF)? ORS : FS; r = 0 }
            }' <<<$lines2)
 
+# remove any duplicates
+linesShortened=$(echo "$linesShortened" | xargs -n1 | sort -u | xargs)
+
 len=$(gawk -F" " 'NF{print NF-1}' <<< $linesShortened)
 
 for i in `seq $((len + 1))`
@@ -139,7 +143,7 @@ do
 			if [ $j -eq 1 ];then
 				start=$(echo "$lines" | grep -E ":$(echo $range | cut -d '-' -f $j)$" | grep -oE "^[0-9]*")
 			else
-				end=$(cat $base | grep -oEn "^$(($(echo $range | cut -d '-' -f $j) + 1))," | grep -oE "^[0-9]*")
+				end=$(cat $base | grep -oEn "^$(($(echo $range | cut -d '-' -f $j) + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
 				end="$(($end - 1 ))"
 			fi
 		done
@@ -148,13 +152,7 @@ do
 	
 	# in case of single entities, can process individually here
 		start=$(echo "$lines" | grep -E ":$range$" | grep -oE "^[0-9]*")
-		end=$(cat $base | grep -oEn "^$(($range + 1))," | grep -oE "^[0-9]*")
-		len2=$(gawk -F" " 'NF{print NF-1}' <<< $start)
-		len3=$(gawk -F" " 'NF{print NF-1}' <<< $end)
-		if [ $len2 -gt 1 ] || [ $len3 -gt 1 ]; then
-			start=$(echo $start | cut -d " " -f 1)
-			end=$(echo $end | cut -d " " -f 1)
-		fi
+		end=$(cat $base | grep -oEn "^$(($range + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
 		end="$(($end - 1 ))"
 		sed -n "$start,${end}p;${end}q" $base >> $dest
 	fi
