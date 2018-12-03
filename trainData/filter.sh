@@ -26,6 +26,8 @@ year="[0-9]*"
 artist=".*"
 genre=".*"
 t="0"
+arg1=false
+arg2=false
 
 while getopts ":b:d:s:y:a:g:thv" option; do
 	case $option in
@@ -35,6 +37,7 @@ while getopts ":b:d:s:y:a:g:thv" option; do
 			exit 1
 		else
 			base=$OPTARG
+			arg1=true
 		fi
 	;;
 	d)
@@ -43,6 +46,7 @@ while getopts ":b:d:s:y:a:g:thv" option; do
 			exit 1
 		else
 			dest=$OPTARG
+			arg2=true
 			if [ -e "$dest" ]; then
 				rm "$dest"
 			fi
@@ -88,6 +92,12 @@ while getopts ":b:d:s:y:a:g:thv" option; do
 	;;
 	esac
 done
+
+if ! $arg1 || ! $arg2
+then
+	usage
+	exit 1
+fi
 
 # remove non-alphanumerics and replace with dash
 # make actions based on looseness or tightness
