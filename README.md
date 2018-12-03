@@ -24,6 +24,6 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 ## Authors
 
-Atreya Shankar (:snail:), Jules Hanel (:snake:), Luis Glast (:squirrel:)
+Atreya Shankar (🐌), Jules Hanel (🐍), Luis Glaser (🐿)
 
 Cognitive Systems 2018, Advanced Natural Language Processing (ANLP)
