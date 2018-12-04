@@ -141,22 +141,15 @@ linesShortened=$(gawk -F " " '{
 # remove any duplicates
 linesShortened=$(echo "$linesShortened" | xargs -n1 | sort -u | xargs)
 
-len=$(gawk -F" " 'NF{print NF-1}' <<< $linesShortened)
-
-for i in `seq $((len + 1))`
+for range in ${linesShortened// / };
 do
-	range=$(echo "$linesShortened" | cut -d " " -f $i)
 	# in case of ranges, can process in batches here
 	if [[ "$range" =~ "-" ]]; then
-		for j in `seq 2`
-		do
-			if [ $j -eq 1 ];then
-				start=$(echo "$lines" | grep -E ":$(echo $range | cut -d '-' -f $j)$" | grep -oE "^[0-9]*")
-			else
-				end=$(cat $base | grep -oEn "^$(($(echo $range | cut -d '-' -f $j) + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
-				end="$(($end - 1 ))"
-			fi
-		done
+		ranges=(${range//-/ })
+		start=$(echo "$lines" | grep -E ":${ranges[0]}$" | grep -oE "^[0-9]*")
+		end=$(cat $base | grep -oEn "^$((${ranges[1]} + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
+		end="$(($end - 1 ))"
+		
 		sed -n "$start,${end}p;${end}q" $base >> $dest
 	else
 	
