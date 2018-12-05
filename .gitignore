@@ -8,3 +8,8 @@
 *.texpadtmp
 *.vscode
 
+# swap files
+*.swp
+
+# temp mac files
+__MACOSX
