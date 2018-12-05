@@ -1,2 +1,10 @@
+#mac specific
 *.DS_STORE
+
+# python stuff
 *.pyc
+
+# environments, luis
+*.texpadtmp
+*.vscode
+
