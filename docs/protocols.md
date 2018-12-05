@@ -19,3 +19,36 @@
 5. We proposed developing a very simple implementation of our idea for now and perhaps deepening this further by implementing it as one of our group project modules or PMs. This would be a natural continuation of our current work and would therefore be efficient for the future.
 
 6. To get a realistic idea of what we should do for our current ANLP project, we decided that we should consult Tatjana and ask her about her views on what is reasonable for us to implement given the skills we learned from this module. We propose to do this tomorrow, on Friday Nov 30. 2018. We hope that this will give us clarity on a reasonable task for the ANLP project which could be expanded later on as a PM.
+
+
+## Dec. 4 2018
+
+1. We talked about tasks we'd have to do for the original song generation idea:
+   * preprocessing of the data for RNN (bigram/trigram?)
+  * write simple neural network that can perform task
+  * create vocabulary for each genre
+  * Problems involved: length and structure of songs, grammaticality, rhymes
+
+
+2. To make the project for feasible (~workload of 1 homework), we discussed narrowing task down and also different but related ideas:
+  * Classification? For example: Can we improve the maximum entropy classifier?
+  * Generating smaller/easier texts (Haikus?)
+
+3. The classification idea seemed interesting, possible ideas for classification were:
+  * determining genre of a song
+  * determining artist of a song
+
+4. We decided to look into creating a neat data base so that we don't have to struggle with noisy csv files
+
+5. An idea that seemed cool to all of us was to look at the development of genres over time:
+  * Example: Check 70s Rock songs and 00s Rock songs and see if the classifier works - if it doesn't determine why. Relevant factors that could lead to significant differences could be: type/token ratio, word length, sophisticated words
+  * it would also be interesting to look at artist features like gender or the general sentiment of a decade
+
+6. Idea seems also nice because the results can be visualized and presented in a good way. We can extract simple things like the top words of genres over time and more sophisticated things like presenting the change of the word vector over time
+
+7. We will meet Tatjana on the 11.12. and discuss our ideas with her. Until the meeting with her, we will look at the following tasks:
+  * Luis: Data base
+  * Jules: Research of papers, techniques
+  * Atreya: Data set research
+
+
