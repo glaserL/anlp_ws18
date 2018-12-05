@@ -149,10 +149,8 @@ do
 		start=$(echo "$lines" | grep -E ":${ranges[0]}$" | grep -oE "^[0-9]*")
 		end=$(cat $base | grep -oEn "^$((${ranges[1]} + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
 		end="$(($end - 1 ))"
-		
 		sed -n "$start,${end}p;${end}q" $base >> $dest
 	else
-	
 	# in case of single entities, can process individually here
 		start=$(echo "$lines" | grep -E ":$range$" | grep -oE "^[0-9]*")
 		end=$(cat $base | grep -oEn "^$(($range + 1)),.*,.*,.*,.*," | grep -oE "^[0-9]*")
