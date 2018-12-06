@@ -50,11 +50,15 @@ def main(args):
             iterator = enumerate(csv_corpus)
         # standard out files
         with open("%s-train.csv" % out, encoding = 'utf-8', mode = 'w') as train_f:
-            train_out = csv.DictWriter(train_f, fieldnames = fieldnames)
+            train_out = csv.DictWriter(train_f, delimiter = ';', fieldnames = fieldnames)
             with open("%s-test.csv" % out, encoding = 'utf-8', mode = 'w') as test_f:
-                test_out = csv.DictWriter(test_f, fieldnames = fieldnames)
+                test_out = csv.DictWriter(test_f, delimiter = ';', fieldnames = fieldnames)
+                train_out.writeheader()
+                #print(test_out.fieldnames)
+                test_out.writeheader()
                 for index, line in iterator:
                     if index <= train_index:
+                        #print(line)
                         train_out.writerow(line)
                     elif index <= test_index:
                         test_out.writerow(line)
@@ -62,7 +66,8 @@ def main(args):
                         break;
         if args.val > 0.0: # in case we want validation data
             with open("%s-validation.csv" % out, 'w', encoding = 'utf-8') as val_f:
-                val_out = csv.DictWriter(val_f, fieldnames = fieldnames)
+                val_out = csv.DictWriter(val_f, delimiter = ';', fieldnames = fieldnames)
+                val_out.writeheader()
                 for index, line in iterator:
                     val_out.writerow(line)
 
