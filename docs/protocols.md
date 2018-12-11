@@ -52,3 +52,16 @@
   * Atreya: Data set research
 
 
+## Dec. 11 2018 (Meeting with Tatjana)
+* She was reminded of research in socio linguistics, how do new words emerge and how do they spread, which topics are discussed more
+  * suggested author: Cristian Danescu-Niculescu-Mizil 
+* Told paper about spread of new words in an online forum about beer
+* "Social science" approach suggesting hypotheses and scrutinizing their validity would be fine 
+* but she also suggested we should come up with a defined task that we can go for to keep a tighter feedback loop
+* "if the dataset is large, it will always be significant" we should be aware of that
+* taking ideas from Fell/Sporleder paper is fine
+* ask Fell to get his data
+* Can we come up with something like a minimal baseline on which we can improve on?
+* Compare to the sporleder paper! Maybe also come up with new ones, see what happens for us.
+* We don't need to finish everything we mention in the planning paper. Must haves: motivation, why, how, and how one will contribute.
+* General Informaion: These project modules are more on one special topic, while only the individual project is actually thought up by an individual where we could extend that
