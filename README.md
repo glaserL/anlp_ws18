@@ -2,6 +2,10 @@
 
 This is a private repository for our ANLP group project. We like cheesy songs.
 
+## Workflow
+
+<img src = "/docs/flowchart.png" width = "800">
+
 ## Milestones
 
 | Date Due | Key Event |
