@@ -6,6 +6,14 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 <img src = "/docs/flowchart.png" width = "800">
 
+## Data Mining Task Delegation
+
+| Person | Task |
+| ------------- | ------------- |
+| Jules (🐍) | [1.a], [1.b], [1.c], [1.d]|
+| Atreya (🐌) | [2.a], [2.b]|
+| Luis (🐿) | [3]|
+
 ## Milestones
 
 | Date Due | Key Event |
