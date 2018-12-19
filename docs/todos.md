@@ -6,5 +6,3 @@
 
 ## Things to discuss
 * Only English?
-
-

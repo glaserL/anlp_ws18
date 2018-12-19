@@ -7,7 +7,6 @@
 \usetikzlibrary{arrows,automata}
 \usetikzlibrary{positioning}
 
-
 \tikzset{
     state/.style={
            rectangle,
@@ -20,14 +19,12 @@
 }
 
 \begin{document}
-
+	
+% code adapted from http://www.texample.net/tikz/examples/epc-flow-charts/
 \begin{tikzpicture}[->,>=stealth']
 
- % Position of QUERY 
- % Use previously defined 'state' as layout (see above)
- % use tabular for content to get columns/rows
- % parbox to limit width of the listing
- \node[state] (QUERY) 
+ % create QUERY node
+ \node[state] (QUERY)
  {\begin{tabular}{l}
   \textbf{SQLite Database}\\\\
   \parbox{4.5cm}{\begin{itemize}
@@ -40,17 +37,17 @@
   \end{itemize}
   }
  \end{tabular}};
-  
- % State: ACK with different content
- \node[state,    	% layout (defined above)
-  text width=5.5cm, 	% max text width
+
+ % create P node
+ \node[state,
+  text width=5.5cm,
   yshift=2cm, 
-  xshift = 3cm,		% move 2cm in y
-  right of=QUERY, 	% Position is to the right of QUERY
-  node distance=6.5cm, 	% distance to QUERY
-  anchor=center] (P) 	% posistion relative to the center of the 'box'
- {%
- \begin{tabular}{l} 	% content
+  xshift = 3cm,
+  right of=QUERY,
+  node distance=6.5cm,
+  anchor=center] (P)
+ {
+ \begin{tabular}{l}
   \textbf{Data Mining}\\\\
     \parbox{5.5cm}{\begin{itemize}
     	\item $\Rightarrow$ Type Token Ratio \hfill [1.a.]
@@ -65,6 +62,7 @@
  \end{tabular}
  };
  
+ % create C node
  \node[state,
   below of=P,
   yshift=-6cm,
@@ -83,15 +81,12 @@
  \end{tabular}
  };
 
- % draw the paths and and print some Text below/above the graph
+ % draw the paths connecting nodes
  \path 
- (QUERY) 	edge[bend left=10]  node[anchor=south,above, yshift = 0.2cm]{export} (P)
- 
- (P) 	edge[bend left=10]  node[anchor=north,below, yshift = -0.2cm]{join}
-                                    node[anchor=north,below]{} (QUERY)
-
- (C)     	edge[bend left=10] node[anchor=south,below,xshift = -0.2cm, yshift = -0.2cm]{join} (QUERY)
- (P)  	edge                node[anchor=left,right, xshift = 0.1cm]{investigate $\Delta$s} (C);
+ (QUERY) edge[bend left=10]  node[anchor=south,above, yshift = 0.2cm]{export} (P)
+ (P) edge[bend left=10]  node[anchor=north,below, yshift = -0.2cm]{join} node[anchor=north,below]{} (QUERY)
+ (C) edge[bend left=10] node[anchor=south,below,xshift = -0.2cm, yshift = -0.2cm]{join} (QUERY)
+ (P) edge node[anchor=left,right, xshift = 0.1cm]{investigate $\Delta$s} (C);
 
 \end{tikzpicture}
 \end{document}
