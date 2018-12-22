@@ -3,8 +3,9 @@
 This is a private repository for our ANLP group project. We like cheesy songs.
 
 ## Workflow
-
+<p align="center">
 <img src = "/docs/flowchart.png" width = "800">
+</p>
 
 ## Data Mining Task Delegation
 
