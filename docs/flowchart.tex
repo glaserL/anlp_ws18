@@ -1,4 +1,4 @@
-\documentclass{minimal}
+\documentclass{standalone}
 \usepackage{pgf}
 \usepackage{tikz}
 \usepackage[utf8]{inputenc}
@@ -7,87 +7,81 @@
 \usetikzlibrary{arrows,automata}
 \usetikzlibrary{positioning}
 
-\tikzset{
-    state/.style={
-           rectangle,
-           rounded corners,
-           draw=black, very thick,
-           minimum height=2em,
-           inner sep=10pt,
-           text centered,
-           },
-}
-
 \begin{document}
-	
-% code adapted from http://www.texample.net/tikz/examples/epc-flow-charts/
+\tikzset{
+	state/.style={
+		rectangle,
+		rounded corners,
+		draw=black, very thick,
+		minimum height=2em,
+		inner sep=10pt,
+		text centered,
+	},
+}
 \begin{tikzpicture}[->,>=stealth']
 
- % create QUERY node
- \node[state] (QUERY)
- {\begin{tabular}{l}
-  \textbf{SQLite Database}\\\\
-  \parbox{4.5cm}{\begin{itemize}
-   \item $\Rightarrow$ Genius API/Kaggle Data
-   \item $\Rightarrow$ Song-Title
-   \item $\Rightarrow$ Artist
-   \item $\Rightarrow$ Year of Release
-   \item $\Rightarrow$ Genre
-   \item $\Rightarrow$ Lyrics
-   \item $\Rightarrow$ Processing Data
-  \end{itemize}
-  }
- \end{tabular}};
+% create QUERY node
+\node[state] (QUERY)
+{\begin{tabular}{l}
+	\textbf{\small SQLite Database}\\[10pt]
+	\parbox{4.5cm}{\raggedright \small
+		$\Rightarrow$ Genius API/Kaggle Data\\
+		$\Rightarrow$ Song-Title\\
+		$\Rightarrow$ Artist\\
+		$\Rightarrow$ Year of Release\\
+		$\Rightarrow$ Genre\\
+		$\Rightarrow$ Lyrics\\
+		$\Rightarrow$ Processing Data\\
+	}
+	\end{tabular}};
 
- % create P node
- \node[state,
-  text width=5.5cm,
-  yshift=2cm, 
-  xshift = 3cm,
-  right of=QUERY,
-  node distance=6.5cm,
-  anchor=center] (P)
- {
- \begin{tabular}{l}
-  \textbf{Data Mining}\\\\
-    \parbox{5.5cm}{\begin{itemize}
-    	\item $\Rightarrow$ Type Token Ratio \hfill [1.a.]
-    	\item $\Rightarrow$ Average Word Length \hfill [1.b.]
-    	\item $\Rightarrow$ POS Tag Analysis \hfill [1.c.]
-    	\item $\Rightarrow$ Non-standard Words \hfill [1.d.]
-    	\item $\Rightarrow$ Frequent Word Analysis \hfill [2.a.]
-    	\item $\Rightarrow$ Emotional Sentiment \hfill [2.b.]
-    	\item $\Rightarrow$ Political Sentiment \hfill [3.]
-    	\end{itemize}
-    }
- \end{tabular}
- };
- 
- % create C node
- \node[state,
-  below of=P,
-  yshift=-6cm,
-  anchor=center,
-  text width=5.7cm] (C) 
- {%
- \begin{tabular}{l}
-  \textbf{Change Analysis}\\\\
-  \parbox{5.71cm}{\begin{itemize}
-  	\item $\Rightarrow$ $\Delta$s in genre through time
-  	\item $\Rightarrow$ $\Delta$s between genres given decade
-  	\item $\Rightarrow$ Employ statistical tests for $\Delta$s
-  	\item $\Rightarrow$ $t$-test, Mann-Whitney $U$ test, etc.
-  	\end{itemize}
-  }
- \end{tabular}
- };
+% create P node
+\node[state,
+text width=6cm,
+yshift=2cm, 
+xshift = 3cm,
+right of=QUERY,
+node distance=6.5cm,
+anchor=center] (P)
+{
+	\begin{tabular}{l}
+	\textbf{\small Data Mining}\\[10pt]
+	\parbox{5.7cm}{\raggedright \small
+		$\Rightarrow$ Type Token Ratio \hfill [1.a.]\\
+		$\Rightarrow$ Average Word Length \hfill [1.b.]\\
+		$\Rightarrow$ POS Tag Analysis \hfill [1.c.]\\
+		$\Rightarrow$ Non-standard Words \hfill [1.d.]\\
+		$\Rightarrow$ Frequent Word Analysis \hfill [2.a.]\\
+		$\Rightarrow$ Emotional Sentiment \hfill [2.b.]\\
+		$\Rightarrow$ Political Sentiment \hfill [3.]\\
+	}
+	\end{tabular}
+};
 
- % draw the paths connecting nodes
- \path 
- (QUERY) edge[bend left=10]  node[anchor=south,above, yshift = 0.2cm]{export} (P)
- (P) edge[bend left=10]  node[anchor=north,below, yshift = -0.2cm]{join} node[anchor=north,below]{} (QUERY)
- (C) edge[bend left=10] node[anchor=south,below,xshift = -0.2cm, yshift = -0.2cm]{join} (QUERY)
- (P) edge node[anchor=left,right, xshift = 0.1cm]{investigate $\Delta$s} (C);
+% create C node
+\node[state,
+below of=P,
+yshift=-6cm,
+anchor=center,
+text width=6cm] (C) 
+{%
+	\begin{tabular}{l}
+	\textbf{\small Change Analysis}\\[10pt]
+	\parbox{5.7cm}{\raggedright \small
+		$\Rightarrow$ $\Delta$s in genre through time\\
+		$\Rightarrow$ $\Delta$s between genres given decade\\
+		$\Rightarrow$ Employ statistical tests for $\Delta$s\\
+		$\Rightarrow$ $t$-test, Mann-Whitney $U$ test, etc.\\
+	}
+	\end{tabular}
+};
+
+% draw the paths connecting nodes
+\path 
+(QUERY) edge[bend left=10]  node[anchor=south,above, yshift = 0.2cm]{\small export} (P)
+(P) edge[bend left=10]  node[anchor=north,below, yshift = -0.2cm]{\small join} node[anchor=north,below]{} (QUERY)
+(C) edge[bend left=10] node[anchor=south,below,xshift = -0.2cm, yshift = -0.2cm]{\small join} (QUERY)
+(P) edge node[anchor=left,right, xshift = 0.1cm]{\small investigate $\Delta$s} (C);
 
 \end{tikzpicture}
 \end{document}
