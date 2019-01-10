@@ -15,6 +15,7 @@
 
 \usepackage{graphicx} % for imports
 \usepackage{subcaption} % for figures
+\usepackage{cleveref}
 \graphicspath{{img/}}
 %\usepackage{wrapfig} % Used for prettier figures
 \usepackage{pgfplots} % plotting pgf format directly
@@ -43,20 +44,38 @@
 
 \section{Introduction \& Motivation}
 
-Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and we were interested whether we would be able to find patterns only in the lyrical data when excluding the acoustic part. Some of these initial questions where if there's a difference between rap and pop lyrics, how they differ in emotionality and how music lyrics in general have evolved over time. 
+Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and the different cultural dimension it expresses. And we were interested whether we would be able to find patterns only in the lyrical data when excluding the acoustic part. Some of these initial questions where if there's a difference between rap and pop lyrics, how they differ in emotionality and how music lyrics in general have evolved over time.
 This planning paper serves the purpose of structuring those initial questions, in order to keep our research focused. This will happen in k% TODO: FIX
  steps. First what data we will use, because this already will restrict the possible questions we can pose. 
 
 \section{State of the Art}
 
 \section{Method}
+\begin{figure}[h]
+	\centering
+	\resizebox{\linewidth}{!}{
+		\includegraphics{img/kaggleplot_bias}
+	}
+	\caption{Distribution of genre over time in \texttt{kaggle} data}
+       \label{fig:kaggle}
+\end{figure}
 % Data
 When first experimenting with our approach, we went with the first available data set from %TODO cite kaggle shit
-However, we came across initial flaws, since the dataset was very biased towards a certain year, we will not use this in the end. We currently have to aproaches we could take from here. The first one will be to crawl data by yourself by interfacing with the genius API.%TODO link foot note citation sth
+However, we came across initial flaws, as the dataset was very biased towards a certain year. This can easily be seen in the histogram depicted in \cref{fig:kaggle} we will not use this in the end. We currently have two approaches we could take from here. The first one will be to crawl data by ourselves by interfacing with the genius API.\footnote{\url{https://docs.genius.com}}
 This is still in progress and we can't yet decide if this dataset will have less of a bias. The second technique will be to search for further datasets and integrate them into one dataset. This would have multiple disadvantages. First, it's likely that we won't be able to completely get rid of the bias and second will introduce new challenges like merging the data and unifying their formats. This wouldn't provide anything interesting for us to learn. 
 
 \section{Tooling}
-For data house keeping we'll use a sqlite database which will be shared over github and interfaced via python. 
+\begin{figure}[h!]
+	\centering
+	\scriptsize
+	\begin{tabular}{llllll}
+ID & Artist & Title & Year & Genre & Lyrics \\
+1 & Rihanna & Diamonds & 2012 & Pop & Shine bright $\ldots$ \\
+	\end{tabular}
+	\caption{Example entries in \texttt{SQLite} database}
+	\label{fig:table}
+\end{figure}
+For data house keeping we'll use a \texttt{SQLite}\footnote{\url{https://www.sqlite.org}} database which will be shared over \texttt{GitHub} and interfaced via \texttt{python}. Furthermore as mentioned already in our group contract, we will use this \texttt{GitHub} repository for collaboration in general. 
 
 In both cases we will scrutinize % WORT richtig?
 our data for any irregularities or unforseen biases and .. mach ma hoit wos mit ean.
@@ -64,7 +83,9 @@ our data for any irregularities or unforseen biases and .. mach ma hoit wos mit 
 
 \section{Personal Contribution}
 
-I will contribute to this project on multiple different ends. I will be responsible of taking care of our database system. In both my undergraduate degrees I had had to work with rather large datasets that kept changing during work. Thus, I am familiar with a few pitfalls concerning data handling. My work should ensure that all of us can work unhindert and do not have to bother a lot with the usual data juggling. 
+I will contribute to this project on multiple different ends. 
+
+I will be responsible of taking care of our database system. In both my undergraduate degrees I had had to work with rather large datasets that kept changing during work. Thus, I am familiar with a few pitfalls concerning data handling. My work should ensure that all of us can work undisrupted and not have to bother a lot with the usual data juggling. 
 
 \section{Learning Goals}
 
@@ -72,7 +93,8 @@ Our project will use quite a few techniques that were not discussed in class. Ho
 
 
 
-
+\bibliographystyle{acl}
+\bibliography{bibtex}
 
 
 
