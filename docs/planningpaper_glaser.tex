@@ -17,7 +17,6 @@
 \usepackage{subcaption} % for figures
 \usepackage{cleveref}
 \graphicspath{{img/}}
-%\usepackage{wrapfig} % Used for prettier figures
 \usepackage{pgfplots} % plotting pgf format directly
 % citations
 
@@ -44,7 +43,7 @@
 
 \section{Introduction \& Motivation}
 
-Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and the different cultural dimension it expresses. And we were interested whether we would be able to find patterns only in the lyrical data when excluding the acoustic part. Some of these initial questions where if there's a difference between rap and pop lyrics, how they differ in emotionality and how music lyrics in general have evolved over time.
+Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and the different cultural dimension it expresses. And we were interested whether we would be able to find patterns only in the lyrical data when excluding the acoustic part. Some of these initial questions where things like: Is there a significant difference between rap and pop lyrics? How do different genres differ in their emotionality? How have music lyrics in general evolved over time? As it should be clear by know, we will take a broad approach and try to answer an array of questions all concerned with music lyrics.
 This planning paper serves the purpose of structuring those initial questions, in order to keep our research focused. This will happen in k% TODO: FIX
  steps. First what data we will use, because this already will restrict the possible questions we can pose. 
 
@@ -80,6 +79,7 @@ For data house keeping we'll use a \texttt{SQLite}\footnote{\url{https://www.sql
 In both cases we will scrutinize % WORT richtig?
 our data for any irregularities or unforseen biases and .. mach ma hoit wos mit ean.
 
+One of my responsibilities will be to detect and annotate political sentiment expressed in lyrics. Right now I intend to use a \texttt{Word2Vec} to represent lyrics and extrapolating their political expression from their. However, how to validate my results is still unclear and will need more work in the upcoming weeks. % TOdo cite mikolov paper
 
 \section{Personal Contribution}
 
@@ -87,9 +87,19 @@ I will contribute to this project on multiple different ends.
 
 I will be responsible of taking care of our database system. In both my undergraduate degrees I had had to work with rather large datasets that kept changing during work. Thus, I am familiar with a few pitfalls concerning data handling. My work should ensure that all of us can work undisrupted and not have to bother a lot with the usual data juggling. 
 
+Furthermore I will take care of annotating political stance % Einstellung?
+to the lyrics (if) they are expressed. I wanted to do this within my undergrad thesis in political science, but didn't get around to and was beyond scope for doing it for German data. % TODO: Cite das hard paper
+
+Furthermore, I already did work with quite a few of the annotations that we will create during our analysis. Thus, I should be able to contribute erfahrung in that area and provide help to my fellow teammates. 
+
+After our annotation phase, I will join Atreya and Juliane with their change analysis. I will aim at bringing my traditional engineering background to the table, trying to solidify our results with sceptical thinking. However, I feel Atreya and Juliane have way more experience then me in this field, which I hope to profit of.
+
 \section{Learning Goals}
 
-Our project will use quite a few techniques that were not discussed in class. However we hope that using those techniques will give us not the ability to apply the knowledge and methods we learned in class on another project. We also will be able to try out new methds which will help me / us when deciding of the further classes to take during the masters programm. Or if I should drop this shit entirely and go for computer science lel
+This brings us to the personal learning goals.
+Our project will use quite a few techniques that were not discussed in class. However we hope that using those techniques will give us not only the ability to apply the knowledge and methods we learned in class on another project. 
+We also will be able to try out new methods which will help me / us when deciding of the further classes to take during the masters programm. This is especially true for the rather exploratory approach that we intend to take. Each hypothesis can be tested in a fairly short amount of time. Testing multiple highly different hypothesis will give us all the opportunity to try out different methods. 
+
 
 
 
