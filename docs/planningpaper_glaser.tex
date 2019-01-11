@@ -2,8 +2,7 @@
 \usepackage[hyperref]{acl2018}
 \usepackage{times}
 \usepackage{latexsym}
-
-%\aclfinalcopy % Uncomment this line for the final submission
+\aclfinalcopy % Uncomment this line for the final submission
 %\def\aclpaperid{***} %  Enter the acl Paper ID here
 
 %\setlength\titlebox{5cm}
@@ -11,7 +10,6 @@
 % to show all the authors. Please do not make the titlebox
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
-
 
 \usepackage{graphicx} % for imports
 \usepackage{subcaption} % for figures
@@ -23,33 +21,33 @@
 \title{Planning Paper}
 
 \author{Luis Glaser\\
-  Matrikelnumber 800140 \\
+  registration number 800140 \\
   Potsdam University \\
-  {\tt Luis.Glaser@uni-potsdam.de}
+  {\tt Luis.Glaser@uni-potsdam.de} \\
+  \\
+  Advanced Natural Language Processing (WS 2018/2019) \\
+  Dr. Tatjana Scheffler \\
   \\}
 
-\date{}
+\date{11. January 2019}
 \usepackage{url}
 
 \begin{document}
 \maketitle
-\begin{itemize}
-\item What is your project about and what approach are you going to take?
-\item What tools and/or data will you use?
-\item What will you learn from this project? How does the successful imple- mentation of the project help you achieve the learning objectives of the class?
-\item What will be your personal role in the team, which skills and what knowl- edge can you contribute?
-\end{itemize}
 
+\thispagestyle{plain}
 
-\section{Introduction \& Motivation}
+\section*{Introduction \& Motivation}
 
-Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and the different cultural dimension it expresses. And we were interested whether we would be able to find patterns only in the lyrical data when excluding the acoustic part. Some of these initial questions where things like: Is there a significant difference between rap and pop lyrics? How do different genres differ in their emotionality? How have music lyrics in general evolved over time? As it should be clear by know, we will take a broad approach and try to answer an array of questions all concerned with music lyrics.
-This planning paper serves the purpose of structuring those initial questions, in order to keep our research focused. This will happen in k% TODO: FIX
- steps. First what data we will use, because this already will restrict the possible questions we can pose. 
+Together with Atreya Shankar and Juliane Hanel I will work on music lyrics. The original motivation was our shared interest in music and the different social and political dimension that can be expressed through it. Although music also consists of the audio signal, lyrics do play an important role when analysing. E.g. \citet{fell_lyrics-based_2014} noted, that considering lyrics in recommendation engines does increase their quality.
 
-\section{State of the Art}
+This suggests, that we should be able to find meaningful patterns when using the lyrical data only. After generating an initial dataset, we had different questions in mind. These included but were not limited to: Is there a significant difference between rap and pop lyrics? How do different genres differ in their emotionality? How have music lyrics in general evolved over time? 
 
-\section{Method}
+As it should be clear by know, we will take a broad approach and try to answer an array of questions all concerned with music lyrics.
+
+This planning paper serves the purpose of structuring those initial questions, in order to keep our research focused. It also will give an overview of what we currently have planned and which areas we still need to work on. 
+
+\section*{Method}\label{sec:method}
 \begin{figure}[h]
 	\centering
 	\resizebox{\linewidth}{!}{
@@ -58,54 +56,52 @@ This planning paper serves the purpose of structuring those initial questions, i
 	\caption{Distribution of genre over time in \texttt{kaggle} data}
        \label{fig:kaggle}
 \end{figure}
-% Data
-When first experimenting with our approach, we went with the first available data set from %TODO cite kaggle shit
-However, we came across initial flaws, as the dataset was very biased towards a certain year. This can easily be seen in the histogram depicted in \cref{fig:kaggle} we will not use this in the end. We currently have two approaches we could take from here. The first one will be to crawl data by ourselves by interfacing with the genius API.\footnote{\url{https://docs.genius.com}}
-This is still in progress and we can't yet decide if this dataset will have less of a bias. The second technique will be to search for further datasets and integrate them into one dataset. This would have multiple disadvantages. First, it's likely that we won't be able to completely get rid of the bias and second will introduce new challenges like merging the data and unifying their formats. This wouldn't provide anything interesting for us to learn. 
 
-\section{Tooling}
+When first experimenting with our ideas, we went with the first available dataset we found on Google's Dataset Search\footnote{\url{https://toolbox.google.com/datasetsearch}} \citep{kuznetsov_55000+_2017}. However, we came across initial flaws, as the dataset was very biased towards a certain year. This can easily be seen in the histogram depicted in \cref{fig:kaggle}. Thus, we will not use this in the end. We currently have two approaches we considering taking from here.
+
+The first one will be to crawl data by ourselves by interfacing with the genius API.\footnote{\url{https://docs.genius.com}} The work on this crawler is still in progress and we can't yet tell if this dataset will have less of a bias. The second technique will be to search for further datasets and integrate them into one dataset. This would have multiple disadvantages. First, it's likely that we won't be able to completely get rid of the bias and second will introduce new challenges like merging the data and unifying their formats. This wouldn't provide anything interesting for us to learn. Thus we hope our crawler will return a satisfactory dataset.
+
+\section*{Tooling}
 \begin{figure}[h!]
 	\centering
 	\scriptsize
 	\begin{tabular}{llllll}
 ID & Artist & Title & Year & Genre & Lyrics \\
 1 & Rihanna & Diamonds & 2012 & Pop & Shine bright $\ldots$ \\
+2 & Toto & Africa & 1982 & Pop & I hear the drums $\ldots$ \\
 	\end{tabular}
 	\caption{Example entries in \texttt{SQLite} database}
 	\label{fig:table}
 \end{figure}
-For data house keeping we'll use a \texttt{SQLite}\footnote{\url{https://www.sqlite.org}} database which will be shared over \texttt{GitHub} and interfaced via \texttt{python}. Furthermore as mentioned already in our group contract, we will use this \texttt{GitHub} repository for collaboration in general. 
+For data house keeping we will use a \texttt{SQLite}\footnote{\url{https://www.sqlite.org}} database which will be shared over \texttt{GitHub} and interfaced via \texttt{python}. Furthermore as mentioned already in our group contract, we will use this \texttt{GitHub} repository for collaboration in general. 
+One of my responsibilities will be to detect and annotate political sentiment expressed in lyrics. Right now I intend to use a \texttt{Word2Vec} \citep{mikolov_efficient_2013} to represent lyrics and extrapolating their political expression from their. However, how to validate our results is still unclear and will need more work in the upcoming weeks.
 
-In both cases we will scrutinize % WORT richtig?
-our data for any irregularities or unforseen biases and .. mach ma hoit wos mit ean.
-
-One of my responsibilities will be to detect and annotate political sentiment expressed in lyrics. Right now I intend to use a \texttt{Word2Vec} to represent lyrics and extrapolating their political expression from their. However, how to validate my results is still unclear and will need more work in the upcoming weeks. % TOdo cite mikolov paper
-
-\section{Personal Contribution}
+\thispagestyle{plain}
+\section*{Personal Contribution}
 
 I will contribute to this project on multiple different ends. 
 
 I will be responsible of taking care of our database system. In both my undergraduate degrees I had had to work with rather large datasets that kept changing during work. Thus, I am familiar with a few pitfalls concerning data handling. My work should ensure that all of us can work undisrupted and not have to bother a lot with the usual data juggling. 
 
-Furthermore I will take care of annotating political stance % Einstellung?
-to the lyrics (if) they are expressed. I wanted to do this within my undergrad thesis in political science, but didn't get around to and was beyond scope for doing it for German data. % TODO: Cite das hard paper
+As noted in \cref{sec:method}, we do not have a proper data set yet. Thus, another task for me will be to build the crawler with which we will collect the lyrics. I have never programmed a crawler before, but worked on post processing modules within a larger web crawler. Therefore I bring a fair amount of experience with me while having my colleagues as a backup in case we need help.
 
-Furthermore, I already did work with quite a few of the annotations that we will create during our analysis. Thus, I should be able to contribute erfahrung in that area and provide help to my fellow teammates. 
+Furthermore I will take care of annotating political expressions to the lyrics (if) they are expressed. I wanted to do this within my undergrad thesis in political science already. Unfortunately, I didn't get around to it since it was beyond the scope for doing it for German data. This will be a interesting challenge for me, since it gets harder as more dimensions need to be taking into account \cite{cohen_classifying_2013}. 
 
-After our annotation phase, I will join Atreya and Juliane with their change analysis. I will aim at bringing my traditional engineering background to the table, trying to solidify our results with sceptical thinking. However, I feel Atreya and Juliane have way more experience then me in this field, which I hope to profit of.
+In general, I already worked with quite a few of the annotations that we will create during our analysis. Thus, I should be able to contribute my experience in that area and provide help to my fellow teammates. 
 
-\section{Learning Goals}
+After our annotation phase, I will join Atreya and Juliane with the change analysis. I will aim at bringing my traditional engineering background to the table, trying to solidify our results with sceptical thinking. However, I feel Atreya and Juliane have way more experience then me in this field, which I hope to profit from.
+
+\section*{Learning Goals}
 
 This brings us to the personal learning goals.
-Our project will use quite a few techniques that were not discussed in class. However we hope that using those techniques will give us not only the ability to apply the knowledge and methods we learned in class on another project. 
-We also will be able to try out new methods which will help me / us when deciding of the further classes to take during the masters programm. This is especially true for the rather exploratory approach that we intend to take. Each hypothesis can be tested in a fairly short amount of time. Testing multiple highly different hypothesis will give us all the opportunity to try out different methods. 
+Our project will use quite a few techniques that were discussed in class. These entail word frequency analysis and part of speech tag analysis. Beyond these, sentiment analysis and vector representations are discussed in our textbook \cite{jurafsky2014speech}. 
+
+Therefore, our final project will give us the ability to deepen our understanding of these topics. Also using them on our own dataset and with our own research questions should strengthen our intuition of these methods.
+We also will be able to try out new methods which will help us when deciding on classes within the rest of our masters programme. This is especially true for the rather exploratory approach that we intend to take. Each hypothesis can be tested in a fairly short amount of time. Testing multiple highly different hypothesis will give us all the opportunity to try and get first or second experience with the techniques that we will employ. This should create an ideal learning basis for the upcoming weeks and the finale of this course.
 
 
-
-
-\bibliographystyle{acl}
 \bibliography{bibtex}
-
+\bibliographystyle{acl_natbib}
 
 
 \end{document}
