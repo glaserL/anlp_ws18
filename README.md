@@ -18,7 +18,7 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 | Date Due | Key Event |
 | ------------- | ------------- |
-| Dec. 14, 2018 | Group contract due (done) |
+| Dec. 14, 2018 | Group contract due |
 | Jan. 11, 2019 | Planning paper due |
 | **Feb. 1, 2019** | **Project presentation** |
 | Mar. 1, 2019 | Final project due |
