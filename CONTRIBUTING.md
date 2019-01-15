@@ -6,7 +6,7 @@ In order to contribute to conflict-free development of this repository, we sugge
 
 First we need to fork the original repository and clone it onto your personal workspace.
 
-1. Fork this repository from GitHub onto your personal account
+1. Fork this repository from GitHub onto your personal account by clicking the fork button on the top right-corner of this repository's GitHub webpage.
 
 2. Clone this repository onto your personal workspace
 
