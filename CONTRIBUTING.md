@@ -30,21 +30,21 @@ $ git checkout master
 $ git merge upstream/master
 ```
 
-5. Create your own topical branch and begin committing your changes there. It should be named uniquely from other branches, in this case we used `dev_yourname`.
+5. Create your own topical branch and begin committing your changes there. It should be named uniquely from other branches, in this case we used `dev`.
 
 ```shell
 $ git checkout master
 
-$ git branch dev_yourname
+$ git branch dev
 
-$ git checkout dev_yourname
+$ git checkout dev
 ```
 
-Now, you can start to make changes to your `dev_yourname` branch.
+Now, you can start to make changes to your `dev` branch.
 
 ## B. Submitting pull request
 
-Once your changes to the `dev_yourname` branch are complete, please add and commit them with concise commit messages and your callsign.
+Once your changes to the `dev` branch are complete, please add and commit them with concise commit messages and your callsign.
 
 1. Update your local `master` branch to absorb newly committed changes from the original repository
 
@@ -56,20 +56,20 @@ $ git checkout master
 $ git merge upstream/master
 ```
 
-2. If there were new developments to the upstream repository, you can now rebase your `dev_yourname` branch based on these.
+2. If there were new developments to the upstream repository, you can now rebase your `dev` branch based on these.
 
 ```shell
-$ git checkout dev_yourname
+$ git checkout dev
 
 $ git rebase master
 ```
 
-3. Push your local commits to your forked repository's `dev_yourname` branch.
+3. Push your local commits to your forked repository's `dev` branch.
 
 ```shell
-$ git push -u origin dev_yourname
+$ git push -u origin dev
 ```
 
-4. Go to the forked repository on your GitHub page. Navigate to the `dev_yourname` branch and click the pull request button. Describe the contents/crux of your pull request. Once all is well, submit the pull request.
+4. Go to the forked repository on your GitHub page. Navigate to the `dev` branch and click the pull request button. Describe the contents/crux of your pull request. Once all is well, submit the pull request.
 
-5. The proposed changes will be reviewed and we will revert regarding the merging process.
+5. The proposed changes will be reviewed and then merged with the master branch.
