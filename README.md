@@ -4,7 +4,7 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 ## Workflow
 
-<img src = "/docs/flowchart.jpg" width = "800">
+<img src = "/docs/img/flowchart.jpg" width = "800">
 
 ## Data Mining Task Delegation
 
@@ -13,6 +13,12 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 | Jules (🐍) | [1.a], [1.b], [1.c], [1.d]|
 | Atreya (🐌) | [2.a], [2.b]|
 | Luis (🐿) | [3]|
+
+## Contribution Guidelines
+
+Once we start to write our own code, it would be good to commit changes onto local branches and merge these later with the master branch. This way, we can avoid conflicts in our commits.
+
+To aid this process, we can refer to the contribution guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Milestones
 
