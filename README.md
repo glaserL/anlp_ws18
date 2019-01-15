@@ -14,11 +14,11 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 | Atreya (🐌) | [2.a], [2.b]|
 | Luis (🐿) | [3]|
 
-## Contribution Guidelines
+## Guidelines for Pull Requests
 
-Once we start to write our own code, it would be good to commit changes onto local branches and merge these later with the master branch. This way, we can avoid conflicts in our commits.
+Once we start to write our own code, it would be good to commit changes onto local branches and submit pull requests to merge with the master branch. This way, we can avoid conflicts in our commits.
 
-To aid this process, we can refer to the contribution guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Milestones
 
