@@ -1,8 +1,8 @@
-# Branching and Pull Requests
+# Guidelines for Pull Requests
 
-In order to contribute to conflict-free development of this repository, we suggest implementing localized branches and submitting pull requests.
+In order to contribute to conflict-free development of this repository, we suggest implementing localized branches and submitting pull requests. The suggested process of doing so will be described here in parts A and B.
 
-## A. Forking and cloning from source
+## A. Forking, cloning and branching
 
 First we need to fork the original repository and clone it onto your personal workspace.
 
