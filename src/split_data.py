@@ -74,7 +74,7 @@ def main(args):
 if(__name__ == "__main__"):
     # TODO: kuerzel fuer die opts? Also -o bzw --outputFile
     parser = argparse.ArgumentParser(description='Params')
-    parser.add_argument('--f', required=True,type = str,
+    parser.add_argument('-f','--file', required=True,type = str,
                         help='TODO')
     parser.add_argument('--pbar', action='store_true',
                         help = 'Will output a progress bar,' \
