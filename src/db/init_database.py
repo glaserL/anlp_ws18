@@ -1,5 +1,6 @@
 import database as db
 import csv
+import sys
 BATCHSIZE = 1000
 def loadIntoDatabaseCSV(path_to_csv):
     database = db.Database()
@@ -18,11 +19,13 @@ def loadIntoDatabaseCSV(path_to_csv):
                 # [print(type(line[key])) for key in ['song','artist','year','genre','lyrics']]
                 statement = {key : line[key] for key in
                             ['song','artist','year','genre','lyrics']}
+                statement['title'] = statement['song']
+                del statement['song'] # stupid quick fix
                 statements.append(statement)
                 # connection.execute("INSERT INTO songs VALUES(NULL, :song, :artist, :year, :genre, :lyrics)", statement)
 
                 if c % BATCHSIZE == 0:
-                    connection.executemany("INSERT INTO songs VALUES(NULL, :song, :artist, :year, :genre, :lyrics)", statements)
+                    connection.executemany("INSERT INTO songs VALUES(NULL, :title, :artist, :year, :genre, :lyrics)", statements)
                     connection.commit()
                     statements.clear()
         except csv.Error:
@@ -30,8 +33,11 @@ def loadIntoDatabaseCSV(path_to_csv):
             # this exception is thrown
             connection.close()
 
-def init():
-    loadIntoDatabaseCSV("../../trainData/lyrics.csv")
+def init(datapath = "../trainData/lyrics.csv"):
+    loadIntoDatabaseCSV(datapath)
 
 if __name__ == "__main__":
-    init()
+    if len(sys.argv)>1:
+        init(sys.argv[1])
+    else:
+        init()
