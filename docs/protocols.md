@@ -66,6 +66,6 @@
 * We don't need to finish everything we mention in the planning paper. Must haves: motivation, why, how, and how one will contribute.
 * General Informaion: These project modules are more on one special topic, while only the individual project is actually thought up by an individual where we could extend that
 
-## Jan 22. 2018 (Presentation Discussion)
+## Jan 22. 2019 (Presentation Discussion)
 
 * The details of our discussion are captured in this [flowchart](presentation_todos.pdf).
