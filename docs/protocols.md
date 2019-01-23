@@ -65,3 +65,7 @@
 * Compare to the sporleder paper! Maybe also come up with new ones, see what happens for us.
 * We don't need to finish everything we mention in the planning paper. Must haves: motivation, why, how, and how one will contribute.
 * General Informaion: These project modules are more on one special topic, while only the individual project is actually thought up by an individual where we could extend that
+
+## Jan 22. 2018 (Presentation Discussion)
+
+* The details of our discussion are captured in this[flowchart](presentation_todos.pdf).
