@@ -68,4 +68,4 @@
 
 ## Jan 22. 2018 (Presentation Discussion)
 
-* The details of our discussion are captured in this[flowchart](presentation_todos.pdf).
+* The details of our discussion are captured in this [flowchart](presentation_todos.pdf).
