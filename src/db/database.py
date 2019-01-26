@@ -11,7 +11,7 @@ class Database(object):
         c = self.conn.cursor()
         with open(path_to_schema, encoding='utf-8', mode='r') as f:
             query = f.read()
-        c.execute(query)
+        c.executescript(query)
 
     def get_connection(self):
         """Use this to get raw connection to operate with"""
@@ -55,8 +55,6 @@ class Database(object):
                     + ";"
         print(statement)
         return self.select(statement, criteria, fetchone)
-
-
 
 
 
