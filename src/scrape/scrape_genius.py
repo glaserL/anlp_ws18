@@ -1,12 +1,11 @@
-import requests
-from pprint import pprint
-import time
+import sys, time, json, csv
+import requests, argparse
 from tqdm import tqdm
-import csv
 from db import database as db # imports a linked directory lol python suxx ass
-import json
 
-with open("/Users/peugeotbaguette/Developer/cogsys/github/anlp_ws18/src/config.json", 'r', encoding='utf-8') as f:
+# CONFIG_PATH = "/Users/peugeotbaguette/Developer/cogsys/github/anlp_ws18/src/config.json"
+CONFIG_PATH = "/Users/glaser/Developer/cogsys/github/anlp_ws18/src/config.json"
+with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
     config = json.load(f)
 
 ## Setup Genius session
@@ -34,7 +33,7 @@ def find_artist_id(artist_name, max_request = 1):
     return ""
 
 
-def get_songs_for_artist(id, max_request = 1):
+def get_songs_for_artist(id, genre = 'N/A', max_request = 1):
     search_url = 'https://api.genius.com/artists/%s/songs'
     params = {'q' : id, 'per_page' : 50}
     result = []
@@ -47,7 +46,8 @@ def get_songs_for_artist(id, max_request = 1):
                 result.append({
                     'title' : song['title'],
                     'artist' : song['primary_artist']['name'],
-                    'url' : song['url']
+                    'url' : song['url'],
+                    'genre' : genre
                 })
         time.sleep(0.2)
     return result
@@ -62,9 +62,9 @@ def collect_raw_songdata(artist_ids):
         iterator = tqdm(artist_ids)
     except ModuleNotFoundError:
         iterator = artist_ids
-    sql_statement = "INSERT INTO songs VALUES(NULL, :title, :artist, NULL, NULL, :url, NULL);"
-    for artist_id in iterator:
-        songs_of_artist = get_songs_for_artist(artist_id)
+    sql_statement = "INSERT INTO songs VALUES(NULL, :title, :artist, NULL, :genre, :url, NULL);"
+    for genre, artist_id in iterator:
+        songs_of_artist = get_songs_for_artist(artist_id, genre = genre)
         statements.extend(songs_of_artist)
         if len(statements) > 1:
             connection.executemany(sql_statement, statements)
@@ -74,23 +74,33 @@ def collect_raw_songdata(artist_ids):
     connection.commit()
     connection.close()
 
-# id = 430404
-# get_songs_for_artist(id,3)
-# search_url = 'https://api.genius.com/artists/%s/songs'
-# params = {'q' : id, 'per_page' : 50, 'encoding' : 'utf-8'}
-# result = []
-# response = SESSION.request("GET", search_url % id, params = params)
-# response.json()['response']['songs'][0].keys()
 
-# response.json()['response']['songs'][2]['title']
-# response.json()['response']['songs'][2]['primary_artist']['name']
-# for i in range(1, max_request+1): # 0 indices causes invalid page error
-#     params['page'] = i
-#     response = SESSION.request("GET", search_url % id, params = params)
+def main(args):
+    with open(args.file, 'r', encoding = 'utf-8') as f:
+        if args.ids:
+            for line in tqdm(list(f)):
+                genre, artist, _ = line.split(';')
+                print("%s;%s" % (find_artist_id(artist),genre.strip()))
+        if args.write:
+            artist_ids = []
+            for line in tqdm(list(f)):
+                genre, artist_id = line.strip().split(";")
+                artist_ids.append( (genre, artist_id) )
+            collect_raw_songdata(artist_ids)
+            
+        
 
-# response.json()['response']['songs'][0]['url']
-# with open("/Users/glaser/Developer/cogsys/github/anlp_ws18/src/scrape/hipHopArtists.csv", 'r', encoding = 'utf-8') as f:
-#     file = csv.DictReader(f, delimiter = ';')
-#     for entry in tqdm(list(file)):
-#         artist_name = entry['artist']
-#         print(artist_name,";",find_artist_id(artist_name))
+if(__name__ == "__main__"):
+    parser = argparse.ArgumentParser(description='Params')
+    parser.add_argument('-f','--file', required=True, type = str,
+                        help='CSV file with artist names')
+    parser.add_argument('--ids', action ='store_true',
+                        help = 'Will collect ids for artist')
+    parser.add_argument("--write", action = 'store_true',
+                        help = 'given ids, will write to db')
+    args = parser.parse_args()
+    main(args)
+
+if __name__ == "__main__":
+    main(sys.argv[1])
+
