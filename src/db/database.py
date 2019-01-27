@@ -6,14 +6,18 @@ class Database(object):
     def __init__(self,
         path_to_db = os.path.dirname(os.path.abspath(__file__))+"/database.db",
         path_to_schema = os.path.dirname(os.path.abspath(__file__))+"/schema.sql"):
+        self.path_to_db = path_to_db
         self.conn = sqlite3.connect(path_to_db)
 
         c = self.conn.cursor()
         with open(path_to_schema, encoding='utf-8', mode='r') as f:
             query = f.read()
-        c.execute(query)
+        c.executescript(query)
+        self.conn.commit()
+        self.conn.close()
 
     def get_connection(self):
+        self.conn = sqlite3.connect(self.path_to_db)
         """Use this to get raw connection to operate with"""
         return self.conn
 
@@ -55,8 +59,6 @@ class Database(object):
                     + ";"
         print(statement)
         return self.select(statement, criteria, fetchone)
-
-
 
 
 
