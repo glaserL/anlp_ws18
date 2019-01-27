@@ -3,16 +3,20 @@ from pprint import pprint
 import time
 from tqdm import tqdm
 import csv
-# from db import database as db # imports a linked directory lol python suxx ass
+from db import database as db # imports a linked directory lol python suxx ass
 import json
 
+with open("/Users/peugeotbaguette/Developer/cogsys/github/anlp_ws18/src/config.json", 'r', encoding='utf-8') as f:
+    config = json.load(f)
+
 ## Setup Genius session
-# ACCESS_TOKEN = open("../config.json") # TODO: read access token from file 
+ACCESS_TOKEN = config["genius_access_token"]
+
 SESSION = requests.Session()
 SESSION.headers = {'application': 'ANLP Project',
        'User-Agent': 'http://github.com/glaserL/anlp_ws18'}
 SLEEP_MIN = 0.2  # Enforce minimum wait time between API calls (seconds)
-# SESSION.headers['authorization'] = 'Bearer ' + ACCESS_TOKEN
+SESSION.headers['authorization'] = 'Bearer ' + ACCESS_TOKEN
 MAX_BATCH_SIZE = 1000
 
 def find_artist_id(artist_name, max_request = 1):
@@ -48,29 +52,27 @@ def get_songs_for_artist(id, max_request = 1):
         time.sleep(0.2)
     return result
 
-# def collect_raw_songdata(artist_ids):
-#     database = db.Database()
-#     connection = database.get_connection()
-#     statements = []
-#     # prettify output 
-#     try:
-#         from tqdm import tqdm
-#         iterator = tqdm(artist_ids)
-#     except ModuleNotFoundError:
-#         iterator = artist_ids
-#     sql_statement = "INSERT INTO songs VALUES(NULL, :title, :artist, NULL, NULL, :url, NULL);"
-#     for artist_id in iterator:
-#         songs_of_artist = get_songs_for_artist(artist_id)
-#         statements.extend(songs_of_artist)
-#         if len(statements) > 1:
-#             connection.executemany(sql_statement, statements) 
-#             connection.commit()
-#             statements.clear()
-#     connection.executemany(sql_statement, statements) # clearup
-#     connection.commit()
-#     connection.close()
-
-# collect_raw_songdata([430404])
+def collect_raw_songdata(artist_ids):
+    database = db.Database()
+    connection = database.get_connection()
+    statements = []
+    # prettify output
+    try:
+        from tqdm import tqdm
+        iterator = tqdm(artist_ids)
+    except ModuleNotFoundError:
+        iterator = artist_ids
+    sql_statement = "INSERT INTO songs VALUES(NULL, :title, :artist, NULL, NULL, :url, NULL);"
+    for artist_id in iterator:
+        songs_of_artist = get_songs_for_artist(artist_id)
+        statements.extend(songs_of_artist)
+        if len(statements) > 1:
+            connection.executemany(sql_statement, statements)
+            connection.commit()
+            statements.clear()
+    connection.executemany(sql_statement, statements) # clearup
+    connection.commit()
+    connection.close()
 
 # id = 430404
 # get_songs_for_artist(id,3)
