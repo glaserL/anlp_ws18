@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 import re
-SEEDFILE = "/Users/glaser/Developer/cogsys/github/anlp_ws18/src/scrape/seedfile.csv"
+SEEDFILE = "/Users/glaser/Developer/cogsys/github/anlp_ws18/data/seedfile.csv"
 META_REGEX = re.compile("/wiki/([A-Z]).*:(.+)")
 
 
