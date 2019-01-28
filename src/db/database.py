@@ -1,11 +1,10 @@
 import sqlite3
-import sys
 import os
 class Database(object):
     # TODO: force db to end up in this directory.
     def __init__(self,
-        path_to_db = os.path.dirname(os.path.abspath(__file__))+"/database.db",
-        path_to_schema = os.path.dirname(os.path.abspath(__file__))+"/schema.sql"):
+                 path_to_db =  os.path.dirname(os.path.abspath(__file__))+"/database.db", 
+                 path_to_schema = os.path.dirname(os.path.abspath(__file__))+"/schema.sql"):
         self.path_to_db = path_to_db
         self.conn = sqlite3.connect(path_to_db)
 
@@ -59,8 +58,6 @@ class Database(object):
                     + ";"
         print(statement)
         return self.select(statement, criteria, fetchone)
-
-
 
 if __name__ == "__main__":
     # TODO: write bunch of tests

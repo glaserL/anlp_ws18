@@ -6,7 +6,9 @@
 You should have our 'lyrics.csv' somewhere and unpacked (default path is '/data/lyrics.csv'). Then call:
 `python3 db/init_database.py`
 In case you put the database file anywhere else, hand it as a commandline argument
-`python3 db/init_database.py PATH_TO_FILE`
+`python3 db/init_database.py -c PATH_TO_FILE`
+
+Additionally, you can also specify the path to a desired database and schema: `python3 db/init_database.py -c <path_to_csv> -d <path_to_db> -s <path_to_schema>`
 
 ## Querying (Simple, Tight)
 In case you're unfamiliar with SQL, you can import the database pseudo interface.
