@@ -131,6 +131,7 @@ class freqVisual(object):
         
     def uniqueWords(self, limit = 100, findUnique = True):
         
+        # create unique words by comparing to other options
         words = []
         z = []
     
@@ -166,6 +167,7 @@ class freqVisual(object):
     
     def makeCloud(dictionary, name, maskPath = None, width = 800, height = 400):
 
+        # check for mask path and push hard into black and white
         if maskPath != None:
             im = Image.open(maskPath)
             im = im.convert('L')
@@ -176,6 +178,7 @@ class freqVisual(object):
         if maskPath == None:
             im2 = None
             
+        # genenrate wordcloud and save to file
         w = WordCloud(background_color="black", contour_width=2, contour_color='white', mask=im2, margin = 5, width = width, height = height)
         w.generate_from_frequencies(dictionary)
         w.to_file(os.path.dirname(os.getcwd()) + "/data/img/" + name + ".png")
