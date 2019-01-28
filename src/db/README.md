@@ -3,18 +3,23 @@
 * Short explanation how to interface with our data
 
 ## Setup
-You should have our 'lyrics.csv' somewhere and unpacked (default path is '/data/lyrics.csv'). Then call:
-`python3 db/init_database.py`
-In case you put the database file anywhere else, hand it as a commandline argument
-`python3 db/init_database.py -c PATH_TO_FILE`
+You should have our 'lyrics.csv' somewhere and unpacked (default path is '/data/lyrics.csv'). If you want to follow all defaults, then call:
 
-Additionally, you can also specify the path to a desired database and schema: `python3 db/init_database.py -c <path_to_csv> -d <path_to_db> -s <path_to_schema>`
+```shell
+$ python3 db/init_database.py
+```
+
+If desired, you can the paths to csv data, the `.db` database and `.sql` schema:
+
+```
+$ python3 db/init_database.py -c path/to/csv -d path/to/db -s path/to/schema
+```
 
 ## Querying (Simple, Tight)
 In case you're unfamiliar with SQL, you can import the database pseudo interface.
 e.g. when your script sits in `src/`:
 
-```
+```python
 from db import database
 
 dbi = database.Database()
@@ -26,7 +31,7 @@ Unfortunately, with abstraction can lead to feature scarceness. Thus, if the dat
 
 ## Querying (Advanced, Broad)
 
-```
+```python
 from db import database
 
 dbi = database.Database()
