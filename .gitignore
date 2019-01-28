@@ -13,3 +13,6 @@
 
 # temp mac files
 __MACOSX
+
+# database files
+*.db
