@@ -61,7 +61,7 @@ dbi = database.Database()
 cur = dbi.get_connection().cursor()
 
 test = []
-query = "SELECT lyrics FROM songs WHERE artist LIKE '%beyonce%'"
+query = "SELECT lyrics FROM songs WHERE LOWER(artist) LIKE '%beyonce%';"
 cur.execute(query)
 test.append(cur.fetchall())
 test = [[l[0] for l in item] for item in test]

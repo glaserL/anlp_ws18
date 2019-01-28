@@ -33,7 +33,7 @@ def loadIntoDatabaseCSV(path_to_csv):
             # this exception is thrown
             connection.close()
 
-def init(datapath = "../trainData/lyrics.csv"):
+def init(datapath = "../data/lyrics.csv"):
     loadIntoDatabaseCSV(datapath)
 
 if __name__ == "__main__":
