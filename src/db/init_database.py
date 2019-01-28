@@ -1,9 +1,11 @@
 import database as db
 import csv
-import sys
+import os
+import argparse
 BATCHSIZE = 1000
-def loadIntoDatabaseCSV(path_to_csv):
-    database = db.Database()
+
+def loadIntoDatabaseCSV(path_to_csv, path_to_db, path_to_schema):
+    database = db.Database(path_to_db, path_to_schema)
     connection = database.get_connection()
     with open(path_to_csv, encoding='utf-8', mode='r') as f:
         try:
@@ -33,11 +35,20 @@ def loadIntoDatabaseCSV(path_to_csv):
             # this exception is thrown
             connection.close()
 
-def init(datapath = "../data/lyrics.csv"):
-    loadIntoDatabaseCSV(datapath)
+# leave defaults as such in case we call this from another main
+def init(datapath = "../data/lyrics.csv", 
+         path_to_db = os.path.dirname(os.path.abspath(__file__))+"/database.db",
+         path_to_schema = os.path.dirname(os.path.abspath(__file__))+"/schema.sql"):
+    loadIntoDatabaseCSV(datapath, path_to_db, path_to_schema)
 
 if __name__ == "__main__":
-    if len(sys.argv)>1:
-        init(sys.argv[1])
-    else:
-        init()
+    
+    # parse command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-c', '--textPath', dest = "text", action="store", default="../data/lyrics.csv")
+    parser.add_argument('-d', '--dbPath', dest = "database", action="store", default=os.path.dirname(os.path.abspath(__file__))+"/database.db")
+    parser.add_argument('-s', '--schemaPath', dest = "schema", action="store", default= os.path.dirname(os.path.abspath(__file__))+"/schema.sql")
+    args = parser.parse_args()
+    
+    # initialize based on defaults
+    init(args.text, args.database, args.schema)

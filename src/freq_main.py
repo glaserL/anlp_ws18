@@ -12,10 +12,14 @@ from freq.freqAnalysis import freqVisual
 from db import database
 
 # initiliaze db in repo
-os.system("python3 db/init_database.py")
+os.system("python3 db/init_database.py \
+          -c ../data/lyrics.csv \
+          -d ./db/db_kaggle.db \
+          -s ./db/schema_Kaggle.sql")
 
 # connect to derived database
-dbi = database.Database()
+dbi = database.Database(path_to_db = os.getcwd()+"/db/db_kaggle.db",
+                        path_to_schema = os.getcwd()+"/db/schema_Kaggle.sql")
 cur = dbi.get_connection().cursor()
 
 # define data structures
@@ -57,7 +61,8 @@ for g in genres:
 #####################################################################
 
 # connect to derived database
-dbi = database.Database()
+dbi = database.Database(path_to_db = os.getcwd()+"/db/db_kaggle.db",
+                        path_to_schema = os.getcwd()+"/db/schema_Kaggle.sql")
 cur = dbi.get_connection().cursor()
 
 test = []
