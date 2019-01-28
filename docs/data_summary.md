@@ -8,20 +8,20 @@ With the resulting tokens, we then extracted tokens that were unique to each gen
 
 The corresponding WordClouds can be seen below:
 
-1. Hip-Hop
+**1. Hip-Hop**
 
-<img src = "/data/img/cloudhip-hopPlain.png" width = "800">
+<img src = "/data/img/cloudhip-hopPlain.png" width = "500">
 
-2. Rock
+**2. Rock**
 
-<img src = "/data/img/cloudrockPlain.png" width = "800">
+<img src = "/data/img/cloudrockPlain.png" width = "500">
 
-3. Country
+**3. Country**
 
-<img src = "/data/img/cloudcountryPlain.png" width = "800">
+<img src = "/data/img/cloudcountryPlain.png" width = "500">
 
 And finally, we had tried to use the same analysis on an artist. Here, we did it for Beyonce.
 
-4. Beyonce
+**4. Beyonce**
 
-<img src = "/data/img/cloudbeyoncePlain.png" width = "800">
+<img src = "/data/img/cloudbeyoncePlain.png" width = "500">
