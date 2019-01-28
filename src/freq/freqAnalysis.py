@@ -9,9 +9,9 @@ import re
 import random
 import multiprocessing
 import numpy as np
+from PIL import Image
 from nltk.corpus import stopwords
 from multiprocessing import Pool
-from PIL import Image
 from wordcloud import WordCloud
 from collections import Counter
 
