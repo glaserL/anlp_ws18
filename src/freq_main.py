@@ -7,8 +7,8 @@
 
 # imports and data structures
 import os
-from freq.freqAnalysis import freqAnalyzer as fa
-from freq.freqAnalysis import freqVisual as fv
+from freq.freqAnalysis import freqAnalyzer
+from freq.freqAnalysis import freqVisual
 from db import database
 
 # initiliaze db in repo
@@ -33,7 +33,7 @@ for i in genres:
 ####################################################################
 
 # this process will tokenize lyrics and save their corresponding files as csvs
-w = fa.freqAnalyzer.tokenizeLyrics(genresLyrics, genres)
+w = freqAnalyzer.tokenizeLyrics(genresLyrics, genres)
 
 # call out freq class and clean lyrics
 w.cleanLyrics()
@@ -43,7 +43,7 @@ w.cleanLyrics()
 #####################################################################
     
 # redefine file and find unique words, using variable from above chunk
-s = fv.freqVisual(w.filesClean())
+s = freqVisual(w.filesClean())
 words = s.uniqueWords(limit = 200)
 i = 0
 
@@ -51,7 +51,7 @@ i = 0
 for g in genres:
     s.makeCloud(words[i], "cloud" + g + "Plain", None, width = 800, height = 600)
     i += 1
-
+    
 #####################################################################
 # extra example for beyonce WordCloud
 #####################################################################
@@ -66,8 +66,8 @@ cur.execute(query)
 test.append(cur.fetchall())
 test = [[l[0] for l in item] for item in test]
 
-w = fa.freqAnalyzer.tokenizeLyrics(test, ["beyonce"])
+w = freqAnalyzer.tokenizeLyrics(test, ["beyonce"])
 w.cleanLyrics()
-s = fv.freqVisual(w.filesClean)
+s = freqVisual(w.filesClean)
 words = s.uniqueWords(limit = 50)
 s.makeCloud(words[0], "cloudbeyoncePlain", None, width = 800, height = 600)
