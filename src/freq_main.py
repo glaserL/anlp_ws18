@@ -71,9 +71,3 @@ w.cleanLyrics()
 s = fv.freqVisual(w.filesClean)
 words = s.uniqueWords(limit = 50)
 s.makeCloud(words[0], "cloudbeyoncePlain", None, width = 800, height = 600)
-
-# TODO Development:
-# remove dependency on reading paths, instead read directly list and output to sqlite db
-# re-run on newer data once available
-# read article and see other comparisons that can be made
-# think of how to share db between us, git lfs

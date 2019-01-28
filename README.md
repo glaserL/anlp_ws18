@@ -36,9 +36,11 @@ To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CO
 
 2. [Meeting Protocols](docs/protocols.md)
 
-3. [Data Summarization](docs/data_summary.md)
+3. [ToDo List](docs/todos.md)
 
-4. [Shared Bibliography](docs/bibtex.bib)
+4. [Data Summarization](docs/data_summary.md)
+
+5. [Shared Bibliography](docs/bibtex.bib)
 
 ## Authors
 
