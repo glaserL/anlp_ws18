@@ -39,7 +39,7 @@ class freqAnalyzer(object):
     def _cleanProcess(self, ls):
         
         # check alphabetic, remove stop-words and lemmatize
-        res = [word.lower() for songs in ls for word in songs if word.lower().isalpha()  and word.lower() not in stopwords.words('english') and word.lower() not in ["chorus", "verse"]] 
+        res = [word.lower() for songs in ls for word in songs if word.lower().isalpha() and word.lower() not in stopwords.words('english')] 
         return res
         
     def cleanLyrics(self, ceiling = 50000, chunksize = 10):

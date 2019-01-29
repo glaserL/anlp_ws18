@@ -32,20 +32,12 @@ for i in genres:
     cur.execute(query, ('%'+i+'%',))
     genresLyrics.append(cur.fetchall())
 
-#####################################################################
-# pass bulk list to freqAnalyzer to generate tokens and clean lyrics
-####################################################################
-
 # this process will tokenize lyrics and save their corresponding files as csvs
 genresLyrics = [[l[0] for l in item] for item in genresLyrics]
 w = freqAnalyzer.tokenizeLyrics(genresLyrics, genres)
 
 # call out freq class and clean lyrics
 w.cleanLyrics()
-
-#####################################################################
-# find top frequency unique words and make WordClouds
-#####################################################################
     
 # redefine file and find unique words, using variable from above chunk
 s = freqVisual(w.filesClean)
