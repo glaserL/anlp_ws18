@@ -7,7 +7,7 @@
 # environments, luis
 *.texpadtmp
 *.vscode
-
+*venv
 # swap files
 *.swp
 
