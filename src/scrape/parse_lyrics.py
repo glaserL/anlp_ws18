@@ -22,7 +22,7 @@ def main():
     statements = []
     # prettify output
     cur = connection.cursor()
-    cur.execute("SELECT id, genius_url FROM songs;")
+    cur.execute("SELECT id, genius_url FROM songs WHERE lyrics IS NULL;") # grab stuff that not filled
     # connection.commit()
     try:
         from tqdm import tqdm
