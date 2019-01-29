@@ -3,9 +3,11 @@
 
 # imports and data structures
 import os
+import re
+from db import database
 from freq.freqAnalysis import freqAnalyzer
 from freq.freqAnalysis import freqVisual
-from db import database
+# from collections import Counter
 
 #####################################################################
 # query all lyrics from specified genres into bulk list 
@@ -33,7 +35,9 @@ for i in genres:
     genresLyrics.append(cur.fetchall())
 
 # this process will tokenize lyrics and save their corresponding files as csvs
-genresLyrics = [[l[0] for l in item] for item in genresLyrics]
+# assembles into correct structure and removes song related annotations such as
+# (chorus), (verse), etc.
+genresLyrics = [[re.sub(r'\([^)]*\)|\[[^)]*\]', '', l[0]) for l in item] for item in genresLyrics]  
 w = freqAnalyzer.tokenizeLyrics(genresLyrics, genres)
 
 # call out freq class and clean lyrics
@@ -42,6 +46,7 @@ w.cleanLyrics()
 # redefine file and find unique words, using variable from above chunk
 s = freqVisual(w.filesClean)
 words = s.uniqueWords(limit = 200)
+# words = [dict(Counter(thing).most_common()[0:100]) for thing in words]
 i = 0
 
 # process WordClouds
@@ -62,7 +67,9 @@ test = []
 query = "SELECT lyrics FROM songs WHERE LOWER(artist) LIKE '%beyonce%';"
 cur.execute(query)
 test.append(cur.fetchall())
-test = [[l[0] for l in item] for item in test]
+# assembles into correct structure and removes song related annotations such as
+# (chorus), (verse), etc.
+test = [[re.sub(r'\([^)]*\)|\[[^)]*\]', '', l[0]) for l in item] for item in test]
 
 w = freqAnalyzer.tokenizeLyrics(test, ["beyonce"])
 w.cleanLyrics()
@@ -89,7 +96,9 @@ for i in genres:
     cur.execute(query, ('%'+i+'%',))
     genresLyrics.append(cur.fetchall())
 
-genresLyrics = [[l[0] for l in item] for item in genresLyrics]
+# assembles into correct structure and removes song related annotations such as
+# (chorus), (verse), etc.
+genresLyrics = [[re.sub(r'\([^)]*\)|\[[^)]*\]', '', l[0]) for l in item] for item in genresLyrics]
 w = freqAnalyzer.tokenizeLyrics(genresLyrics, ["hip19", "rock19", "country19"])
 w.cleanLyrics()
 

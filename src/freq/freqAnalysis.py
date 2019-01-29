@@ -179,7 +179,7 @@ class freqVisual(object):
             im2 = None
             
         # genenrate wordcloud and save to file
-        w = WordCloud(background_color="black", contour_width=2, contour_color='white', mask=im2, margin = 5, width = width, height = height)
+        w = WordCloud(background_color="white", colormap= "inferno_r", min_font_size = 20, contour_width=1, prefer_horizontal= 0.95, contour_color="white", mask=im2, margin = 1, width = width, height = height)
         w.generate_from_frequencies(dictionary)
         w.to_file(os.path.dirname(os.getcwd()) + "/data/img/" + name + ".png")
         
