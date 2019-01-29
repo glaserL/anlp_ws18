@@ -38,7 +38,7 @@ class freqAnalyzer(object):
         
     def _cleanProcess(self, ls):
         
-        # check alphabetic, remove stop-words and lemmatize
+        # check alphabetic and remove stop-words
         res = [word.lower() for songs in ls for word in songs if word.lower().isalpha() and word.lower() not in stopwords.words('english')] 
         return res
         
@@ -52,7 +52,7 @@ class freqAnalyzer(object):
                 reader = csv.reader(f)
                 ls = list(reader)
             
-            # take random sample of ceiling if its size exceed ceciling
+            # take random sample of ceiling if its size exceed ceiling
             if len(ls) > ceiling:
                 ls = random.sample(ls, 50000)
             
