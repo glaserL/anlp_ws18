@@ -2,7 +2,7 @@
 
 In order to contribute to conflict-free development of this repository, we suggest implementing localized branches and submitting pull requests. The suggested process of doing so will be described here in parts A and B.
 
-## A. Local branching
+## A. Local/Remote branching
 
 First we need to clone this repository onto your personal workspace and implement a local/remote branch.
 
