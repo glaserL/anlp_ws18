@@ -6,7 +6,15 @@ CREATE TABLE IF NOT EXISTS songs (
  year text,
  genre text,
  genius_url text,
- lyrics text
+ lyrics text,
+ postagged TEXT,
+ lemmatized TEXT,
+ frequency TEXT,
+ sentiment REAL,
+ avg_word_length REAL,
+ non_std_words REAL,
+ ttr REAL,
+ lexical_density REAL
 );
 
 CREATE TABLE IF NOT EXISTS scrape (
