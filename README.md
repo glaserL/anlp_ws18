@@ -26,8 +26,8 @@ To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CO
 | ------------- | ------------- |
 | Dec. 14, 2018 | Group contract due |
 | Jan. 11, 2019 | Planning paper due |
-| **Feb. 1, 2019** | **Project presentation** |
-| Mar. 1, 2019 | Final project due |
+| Feb. 1, 2019 | Project presentation |
+| **Mar. 1, 2019** | **Final project due** |
 | Mar. 8, 2019 | Project report due |
 
 ## Further Contents
