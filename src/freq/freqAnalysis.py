@@ -38,7 +38,7 @@ class freqAnalyzer(object):
         
     def _cleanProcess(self, ls):
         
-        # check alphabetic, remove stop-words and lemmatize
+        # check alphabetic and remove stop-words
         res = [word.lower() for songs in ls for word in songs if word.lower().isalpha() and word.lower() not in stopwords.words('english')] 
         return res
         
@@ -52,7 +52,7 @@ class freqAnalyzer(object):
                 reader = csv.reader(f)
                 ls = list(reader)
             
-            # take random sample of ceiling if its size exceed ceciling
+            # take random sample of ceiling if its size exceed ceiling
             if len(ls) > ceiling:
                 ls = random.sample(ls, 50000)
             
@@ -179,7 +179,7 @@ class freqVisual(object):
             im2 = None
             
         # genenrate wordcloud and save to file
-        w = WordCloud(background_color="black", contour_width=2, contour_color='white', mask=im2, margin = 5, width = width, height = height)
+        w = WordCloud(background_color="white", colormap= "inferno_r", min_font_size = 20, contour_width=1, prefer_horizontal= 0.95, contour_color="white", mask=im2, margin = 1, width = width, height = height)
         w.generate_from_frequencies(dictionary)
         w.to_file(os.path.dirname(os.getcwd()) + "/data/img/" + name + ".png")
         

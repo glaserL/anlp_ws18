@@ -4,9 +4,9 @@ This is a private repository for our ANLP group project. We like cheesy songs.
 
 ## Workflow
 
-<img src = "/docs/img/flowchart.jpg" width = "800">
+<img src = "/docs/img/flowchart.png" width = "800">
 
-## Data Mining Task Delegation
+## Task Delegation
 
 | Person | Task |
 | ------------- | ------------- |

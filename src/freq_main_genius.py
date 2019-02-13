@@ -79,16 +79,10 @@ w.cleanLyrics()
 
 # redefine file and find unique words, using variable from above chunk
 s = freqVisual(w.filesClean)
-words = s.uniqueWords(limit = 200)
+words = s.uniqueWords(limit = 50, findUnique = False)
 i = 0
 
 # process WordClouds
 for g in genres:
-    s.makeCloud(words[i], "cloud" + g + "Plain", None, width = 800, height = 600)
+    s.makeCloud(words[i], "cloud" + g + "Plain2", None, width = 800, height = 600)
     i += 1
-
-# TODO: Devlopment
-# remove other words like into etc, find all of these problematic ones
-# add action to take in case only one coree detected
-# remove bad tokens at the start by searching for them before sending to tokenize
-# do this for both kaggle and genius
