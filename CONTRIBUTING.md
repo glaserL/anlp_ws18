@@ -2,35 +2,29 @@
 
 In order to contribute to conflict-free development of this repository, we suggest implementing localized branches and submitting pull requests. The suggested process of doing so will be described here in parts A and B.
 
-## A. Forking, cloning and branching
+## A. Local/Remote branching
 
-First we need to fork the original repository and clone it onto your personal workspace.
+First we need to clone this repository onto your personal workspace and implement a local/remote branch.
 
-1. Fork this repository from GitHub onto your personal account by clicking the fork button on the top right-corner of this repository's GitHub webpage.
+1. Create a branch on GitHub by using the web-based UI. Click on the branch option and type a unique name for a branch. In our case, we assume this to be `dev`.
 
-2. Clone this repository onto your personal workspace
+2. Clone this repository onto your personal workspace.
 
 ```shell
-$ git clone https://github.com/<youraccount>/anlp_ws18
+$ git clone https://github.com/glaserL/anlp_ws18
 ```
 
-3. Add our original repository as an additional remote URL
+3. Ensure your cloned repository is synced with all the updates from the upstream repository.
 
 ```shell
-$ git remote add upstream https://github.com/glaserL/anlp_ws18
-```
-
-4. Before committing any changes, ensure your forked repository is synced with all the updates from the original repository
-
-```shell
-$ git fetch upstream
+$ git fetch origin
 
 $ git checkout master
 
-$ git merge upstream/master
+$ git merge origin/master
 ```
 
-5. Create your own topical branch and begin committing your changes there. It should be named uniquely from other branches, in this case we used `dev`.
+4. Create your own topical branch and begin committing your changes there. Since it is a branch local to your workspace, its name would not matter to the upstream repository. However, for simplicity we will also name this as `dev`.
 
 ```shell
 $ git checkout master
@@ -40,20 +34,20 @@ $ git branch dev
 $ git checkout dev
 ```
 
-Now, you can start to make changes to your `dev` branch.
+Now, you can start to make changes changes to your `dev` branch.
 
 ## B. Submitting pull request
 
 Once your changes to the `dev` branch are complete, please add and commit them with concise commit messages and your callsign.
 
-1. Update your local `master` branch to absorb newly committed changes from the original repository
+1. Update your local `master` branch to absorb newly committed changes from the upstream repository.
 
 ```shell
-$ git fetch upstream
+$ git fetch origin
 
 $ git checkout master
 
-$ git merge upstream/master
+$ git merge origin/master
 ```
 
 2. If there were new developments to the upstream repository, you can now rebase your `dev` branch based on these.
@@ -64,12 +58,12 @@ $ git checkout dev
 $ git rebase master
 ```
 
-3. Push your local commits to your forked repository's `dev` branch.
+3. Push your local commits to your repository's remote `dev` branch.
 
 ```shell
-$ git push -u origin dev
+$ git push origin dev
 ```
 
-4. Go to the forked repository on your GitHub page. Navigate to the `dev` branch and click the pull request button. Describe the contents/crux of your pull request. Once all is well, submit the pull request.
+4. Go to the repository's page on your GitHub page. Navigate to the `dev` branch and click the pull request button. Describe the contents/crux of your pull request. Once all is well, submit the pull request.
 
 5. The proposed changes will be reviewed and then merged with the master branch.

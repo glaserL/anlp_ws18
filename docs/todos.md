@@ -15,3 +15,6 @@
 * Re-run frequency analysis on newer data once available
 * Read Sporleder article and see other comparisons that can be made
 * Think of how to share db between us, perhaps git lfs
+* Add action to take in case only one coree detected
+* Integrate kaggle and genius data into one where possible in a balanced manner
+* Consider if ceiling needed in freqAnalysis.py
