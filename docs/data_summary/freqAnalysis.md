@@ -10,18 +10,18 @@ The corresponding WordClouds can be seen below:
 
 **1. Hip-Hop**
 
-<img src = "/data/img/cloudhip-hopPlain.png" width = "500">
+<img src = "/data/img/cloudhipPlain.png" width = "500">
 
-**2. Rock**
-
-<img src = "/data/img/cloudrockPlain.png" width = "500">
-
-**3. Country**
+**2. Country**
 
 <img src = "/data/img/cloudcountryPlain.png" width = "500">
 
-And finally, we had tried to use the same analysis on an artist. Here, we did it for Beyonce.
+We also experimented using more exciting masks for word-clouds.
 
-**4. Beyonce**
+**1. Hip-Hop (Biggie)**
 
-<img src = "/data/img/cloudbeyoncePlain.png" width = "500">
+<img src = "/data/img/cloudHipMask.png" width = "500">
+
+**2. Rock (Guitar)**
+
+<img src = "/data/img/cloudRock.png" width = "500">
