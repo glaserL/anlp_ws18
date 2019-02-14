@@ -68,4 +68,17 @@
 
 ## Jan 22. 2019 (Presentation Discussion)
 
-* The details of our discussion are captured in this [flowchart](presentation_todos.pdf).
+* The details of our discussion are captured in this [flowchart](/docs/img/presentation_todos.pdf).
+
+## Feb 5. 2019
+
+* try postagging lyrics and then lemmatizing for freq which could be used for Jules' task
+* filter languages to english
+* modify db class to allow for different databases and kaggle
+* try to filter same artists in each temporal step to keep similarity
+* large corpus will have some significant change over time
+* can do z test instead of t
+* investigate effect size for statistical change
+* combine computing power in due time
+* consider paired/unpaired methods
+* use existing classifier for sentiment/train some on data

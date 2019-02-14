@@ -21,7 +21,7 @@ os.system("python3 db/init_database.py \
 
 # connect to derived database
 dbi = database.Database(path_to_db = os.getcwd()+"/db/db_kaggle.db",
-                        path_to_schema = os.getcwd()+"/db/schema_Kaggle.sql")
+                        path_to_schema = os.getcwd()+"/db/schemaKaggle.sql")
 cur = dbi.get_connection().cursor()
 
 # define data structures
@@ -60,7 +60,7 @@ for g in genres:
 
 # connect to derived database
 dbi = database.Database(path_to_db = os.getcwd()+"/db/db_kaggle.db",
-                        path_to_schema = os.getcwd()+"/db/schema_Kaggle.sql")
+                        path_to_schema = os.getcwd()+"/db/schemaKaggle.sql")
 cur = dbi.get_connection().cursor()
 
 test = []
@@ -83,7 +83,7 @@ s.makeCloud(words[0], "cloudbeyoncePlain", None, width = 800, height = 600)
 
 # connect to derived database
 dbi = database.Database(path_to_db = os.getcwd()+"/db/db_kaggle.db",
-                        path_to_schema = os.getcwd()+"/db/schema_Kaggle.sql")
+                        path_to_schema = os.getcwd()+"/db/schemaKaggle.sql")
 cur = dbi.get_connection().cursor()
 
 # define data structures

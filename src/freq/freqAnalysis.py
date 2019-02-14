@@ -68,7 +68,7 @@ class freqAnalyzer(object):
             # search for basename to assign to clean file
             name = re.sub("Token.csv", "", os.path.basename(file))
             
-            path = os.path.dirname(os.getcwd()) + "/data/clean/" + name + "Clean.csv"
+            path = os.path.dirname(os.getcwd()) + "/tmp/clean/" + name + "Clean.csv"
             self.filesClean.append(path)
             
             # write list to clear memory
@@ -105,7 +105,7 @@ class freqAnalyzer(object):
                 pool.join()
                         
                 res = [ls for grp in res for ls in grp]
-                path = os.path.dirname(os.getcwd()) + "/data/token/" + grpNames[i] + "Token.csv"
+                path = os.path.dirname(os.getcwd()) + "/tmp/token/" + grpNames[i] + "Token.csv"
                 
                 # write out all files to save memory
                 with open(path, "w") as output:
