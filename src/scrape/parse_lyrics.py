@@ -6,7 +6,11 @@ import time
 def extract_data_from_HTML(html):
     page = BeautifulSoup(html, "html.parser")
     data = {}
-    data['lyrics'] = page.find("div", class_ = "lyrics").get_text()
+    try:
+        data['lyrics'] = page.find("div", class_ = "lyrics").get_text()
+    except AttributeError:
+        # some sites don't have lyrics
+        data['lyrics'] = "NONE"
     try:
         year_raw = page.find("span", class_ = "metadata_unit-info metadata_unit-info--text_only").get_text()
     except AttributeError:
