@@ -13,7 +13,7 @@ from db import database
 #####################################################################
 
 # connect to derived database
-dbi = database.Database(path_to_db = os.getcwd()+"/db/db_genius.db",
+dbi = database.Database(path_to_db = os.getcwd()+"/db/database.db",
                         path_to_schema = os.getcwd()+"/db/schema.sql")
 cur = dbi.get_connection().cursor()
 
@@ -51,7 +51,7 @@ for g in genres:
 #####################################################################
 
 # connect to derived database
-dbi = database.Database(path_to_db = os.getcwd()+"/db/db_genius.db",
+dbi = database.Database(path_to_db = os.getcwd()+"/db/database.db",
                         path_to_schema = os.getcwd()+"/db/schema.sql")
 cur = dbi.get_connection().cursor()
 

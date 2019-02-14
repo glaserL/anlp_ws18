@@ -36,7 +36,7 @@ To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CO
 
 2. [Meeting Protocols](docs/protocols.md)
 
-3. [Data Summarization](https://github.com/glaserL/anlp_ws18/tree/master/docs/data_summary)
+3. [Data Summarization](https://github.com/glaserL/anlp_ws18/tree/master/docs/summary)
 
 4. [Shared Todo List](docs/todos.md)
 

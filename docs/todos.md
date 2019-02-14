@@ -15,14 +15,11 @@
 * Re-run frequency analysis on newer data once available
 * Read Sporleder article and see other comparisons that can be made
 * Think of how to share db between us, perhaps git lfs
-
-
-=======
-* Add action to take in case only one coree detected
+* Add action to take in case only one core detected
 * Integrate kaggle and genius data into one where possible in a balanced manner
 * Consider if ceiling needed in freqAnalysis.py
 
-## brainstorming
+## Brainstorming
 
 * Final Data collection HipHop, Country, Pop = Billboard Charts. (Luis)
   * Finished Criteria: relatively unbiased (timewise) distribution 80s til now (Luis) 
@@ -33,7 +30,4 @@
 * Final visualisations (Pending)
 * Sentiment Annotation (Atreya)
 * Finalize the data table (Luis)
-* Validation idea: validate anecdotal evidence for one famous artist e.g. 
-
-
-
+* Validation idea: validate anecdotal evidence for one famous artist
