@@ -17,7 +17,7 @@ lower case are column names or other things
 select_statement = ("SELECT " # keyword for selecting some data
                     "id, lyrics " # which columns to select, see schema.sql for options
                     "FROM songs " # the table to get stuff from
-                    "WHERE " # key word for conditions, followed by COMMA SEPERATED conditions
+                    "WHERE " # key word for conditions, followed by conditions seperated with AND
                     "language IS NULL" # only where we didnt fill out anything yet
                     ";") # THE HOLY SEMICOLON WELCOME TO THE EIGHTIES 
 
