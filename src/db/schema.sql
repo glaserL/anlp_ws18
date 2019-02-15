@@ -1,12 +1,13 @@
 -- songs table
 CREATE TABLE IF NOT EXISTS songs (
- id integer PRIMARY KEY,
- title text NOT NULL,
- artist text NOT NULL,
- year text,
- genre text,
- genius_url text,
- lyrics text,
+ id INTEGER PRIMARY KEY,
+ title TEXT NOT NULL,
+ artist TEXT NOT NULL,
+ year TEXT,
+ genre TEXT,
+ genius_url TEXT,
+ lyrics TEXT,
+ language TEXT,
  postagged TEXT,
  lemmatized TEXT,
  frequency TEXT,
@@ -18,9 +19,10 @@ CREATE TABLE IF NOT EXISTS songs (
 );
 
 CREATE TABLE IF NOT EXISTS scrape (
-    id integer PRIMARY KEY,
-    artist text NOT NULL,
-    wikipedia_url text NOT NULL,
-    genius_id integer,
-    genius_url text
+    id INTEGER PRIMARY KEY,
+    artist TEXT NOT NULL,
+    wikipedia_url TEXT NOT NULL,
+    genius_id INTEGER,
+    genius_url TEXT,
+    genre TEXT
 )
