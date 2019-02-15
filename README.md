@@ -2,6 +2,16 @@
 
 This is a private repository for our ANLP group project. We like cheesy songs.
 
+## Initialization
+
+After cloning this repository, you would need to initialize it to prepare for testing:
+
+```shell
+$ ./init.sh
+```
+
+This process essentially downloads lyrics databases from git lfs and moves a pre-commit hook into your local `.git/hooks` folder.
+
 ## Workflow
 
 <img src = "/docs/img/flowchart.png" width = "800">

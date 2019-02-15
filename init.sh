@@ -10,3 +10,6 @@ git lfs fetch
 
 # checks out large files to appropriate locations
 git lfs checkout
+
+# move pre-commit hook into local .git folder for activation
+cp ./hooks/pre-commit.sample ./.git/hooks/pre-commit
