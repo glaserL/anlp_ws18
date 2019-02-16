@@ -49,7 +49,7 @@ def get_songs_for_artist(id, genre = 'N/A', max_request = 1):
                         'url' : song['url'],
                         'genre' : genre
                     })
-        time.sleep(0.2)
+        time.sleep(0.1)
     return result
 
 def collect_raw_songdata(artist_ids, n):
@@ -88,8 +88,9 @@ def main(arguments):
             for entry in tqdm(list(cur)):
                 sql_id, artist_name = entry
                 genius_id = find_artist_id(artist_name)
+                genius_id = genius_id if genius_id != "" else "N/A" # make missings visible 
                 statements.append((genius_id, sql_id))
-                if len(statements)>1: # we keep it low to keep reexecutions useful
+                if len(statements)>50: # we keep it low to keep reexecutions useful
                     conn.executemany(update_statement, statements)
                     conn.commit()
                     statements.clear()
@@ -102,16 +103,17 @@ def main(arguments):
             del database
         if arguments.write:
             artist_ids = []
-            database = db.Database()
-            conn = database.get_connection()
-            select_statement = "SELECT genre, genius_id FROM scrape;"
-            cur = conn.cursor()
-            cur.execute(select_statement)
-            artist_ids = [(genre, artist_id) for genre, artist_id in cur]
-            conn.close()
-            del conn
-            del database
-            collect_raw_songdata(artist_ids, args.number_of_songs)
+            for genre in arguments.genre:        
+                database = db.Database()
+                conn = database.get_connection()
+                select_statement = "SELECT genre, genius_id FROM scrape WHERE genius_id != 'N/A' AND genre = %s;" % genre
+                cur = conn.cursor()
+                cur.execute(select_statement)
+                artist_ids = [(genre, artist_id) for genre, artist_id in cur]
+                conn.close()
+                del conn
+                del database
+                collect_raw_songdata(artist_ids, args.number_of_songs)
         if not arguments.write and not arguments.ids:
             print("Specify what to do!:")
             print(arguments)            
@@ -125,6 +127,7 @@ if(__name__ == "__main__"):
                         help = 'given artist ids, will write song ids to db')
     parser.add_argument("-n","--number_of_songs", type = int, default = 50,
                         help = "How many songs to get per artist")
+    parser.add_argument('-g','genre', nargs="*")
     args = parser.parse_args()
     main(args)
 
