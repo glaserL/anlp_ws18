@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from db import database as db
+import argparse
 import time
 import random
 
@@ -23,14 +24,15 @@ def extract_data_from_HTML(html):
     return data
 
 
-def main():
+def main(args):
     database = db.Database()
     connection = database.get_connection()
     statements = []
     # prettify output
     cur = connection.cursor()
-    cur.execute("SELECT DISTINCT genre FROM songs;")
-    genres = [row[0] for row in cur.fetchall()]
+    # cur.execute("SELECT DISTINCT genre FROM songs;")
+    # genres = [row[0] for row in cur.fetchall()]
+    genres = args.genre
     for genre in genres:
         cur.execute("SELECT id, genius_url FROM songs WHERE lyrics IS NULL AND genre = '%s';" % genre) # grab stuff that not filled
         try:
@@ -63,5 +65,9 @@ def main():
     connection.commit()
     connection.close()
 
-
-main()
+if(__name__ == "__main__"):
+    parser = argparse.ArgumentParser(description='Params')
+                        help = "How many songs to get per artist")
+    parser.add_argument('-g','genre', nargs="*")
+    args = parser.parse_args()
+    main(args)
