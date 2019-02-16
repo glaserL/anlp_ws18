@@ -67,7 +67,7 @@ def main(args):
 
 if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Params')
+    parser.add_argument('-g','genre', nargs="*",
                         help = "How many songs to get per artist")
-    parser.add_argument('-g','genre', nargs="*")
     args = parser.parse_args()
     main(args)
