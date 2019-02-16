@@ -1,3 +1,4 @@
 # exclude intermediate files
 *.txt
 *.csv
+!lang.csv

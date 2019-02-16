@@ -38,7 +38,7 @@ cur.execute(select_statement) # now the cursor is the link to what we queried fo
 
 statements = [] # This will contain the values for the wildcards above
 try:
-    for tqdm import tqdm # I love myself some progressbar, dont worry if you dont have it ...
+    from tqdm import tqdm # I love myself some progressbar, dont worry if you dont have it ...
     iterator = tqdm(cur.fetchall())
 except ModuleNotFoundError: # ... I'll catch you. *badum tiss*
     iterator = cur.fetchall()

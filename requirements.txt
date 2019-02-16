@@ -1,7 +1,9 @@
 argparse
+ast
 bs4
 collections
 csv
+langdetect
 math
 multiprocessing
 nltk

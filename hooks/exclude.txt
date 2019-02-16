@@ -1,7 +1,10 @@
 src
+clean
 db
 freq
 scrape
+__init__
+remove_not_english
 database
 init_database
 __init__
@@ -14,3 +17,4 @@ parse_lyrics
 scrape_genius
 scrape_wikipedia
 split_data
+tmpLang
