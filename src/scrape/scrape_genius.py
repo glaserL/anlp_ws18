@@ -127,7 +127,7 @@ if(__name__ == "__main__"):
                         help = 'given artist ids, will write song ids to db')
     parser.add_argument("-n","--number_of_songs", type = int, default = 50,
                         help = "How many songs to get per artist")
-    parser.add_argument('-g','genre', nargs="*")
+    parser.add_argument('-g','--genre', nargs="*")
     args = parser.parse_args()
     main(args)
 

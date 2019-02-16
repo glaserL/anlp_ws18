@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from db import database as db
 import argparse
 import time
+import os
 import random
 
 def extract_data_from_HTML(html):
@@ -25,7 +26,7 @@ def extract_data_from_HTML(html):
 
 
 def main(args):
-    database = db.Database()
+    database = db.Database(os.path.dirname(os.path.abspath(__file__))+"/db/database_temp.db")
     connection = database.get_connection()
     statements = []
     # prettify output
@@ -67,7 +68,7 @@ def main(args):
 
 if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Params')
-    parser.add_argument('-g','genre', nargs="*",
+    parser.add_argument('-g','--genre', nargs="*",
                         help = "How many songs to get per artist")
     args = parser.parse_args()
     main(args)
