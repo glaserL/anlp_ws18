@@ -62,7 +62,7 @@ def langUpdate(nocores = None, chunksize = 100):
         iterator = cur.fetchall()
         
         with Pool(nocores) as p:
-           statements = list(tqdm(p.imap(_lang, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
+           statements = list(tqdm(p.imap_unordered(_lang, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
         
         statements = [item for sublist in statements for item in sublist]
         conn.executemany(update_statement, statements)

@@ -17,9 +17,9 @@ def _anno(do):
     res = []
     
     for sql_id, lyrics in do:
-        test = re.sub(r'\([^)]*\)|\[[^)]*\]', '', lyrics)
-        test = test.splitlines()
-        test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]        
+        test = lyrics.splitlines()
+        test = [re.sub(r'\([^)]*\)|\[[^)]*\]', '', l) for l in test]
+        test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]
         res.append((str(test), sql_id))
         
     return res
@@ -40,8 +40,8 @@ def annotate(nocores=None, chunksize = 100):
         # start loop for annotation
         for sql_id, lyrics in iterator:
         
-            test = re.sub(r'\([^)]*\)|\[[^)]*\]', '', lyrics)
-            test = test.splitlines()
+            test = lyrics.splitlines()
+            test = [re.sub(r'\([^)]*\)|\[[^)]*\]', '', l) for l in test]
             test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]
             statements.append((str(test), sql_id))
         
@@ -65,7 +65,7 @@ def annotate(nocores=None, chunksize = 100):
         iterator = cur.fetchall()
 
         with Pool(nocores) as p:
-           statements = list(tqdm(p.imap(_anno, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
+           statements = list(tqdm(p.imap_unordered(_anno, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
         
         statements = [item for sublist in statements for item in sublist]
         conn.executemany(update_statement, statements)
