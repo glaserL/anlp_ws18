@@ -11,16 +11,14 @@ select_statement = ("SELECT id, lyrics FROM songs WHERE language IS NULL;")
 update_statement = ("UPDATE songs SET language = ? WHERE id = ?;")
 
 def _lang(do):
-    res = []
-    for sql_id, lyrics in do:
-        try:
-            language = detect(lyrics[:1000])
-        except:
-            language = "NA"
-            
-        res.append((language, sql_id))
-            
-    return res
+    sql_id,lyrics = do
+
+    try:
+       language = detect(lyrics[:1000])
+    except:
+        language = "NA"
+
+    return (language, sql_id)
 
 def langUpdate(nocores = None, chunksize = 100):
     
@@ -62,9 +60,8 @@ def langUpdate(nocores = None, chunksize = 100):
         iterator = cur.fetchall()
         
         with Pool(nocores) as p:
-           statements = list(tqdm(p.imap_unordered(_lang, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
+            statements = list(tqdm(p.imap_unordered(_lang, iterator, chunksize), total=len(iterator)))
         
-        statements = [item for sublist in statements for item in sublist]
         conn.executemany(update_statement, statements)
         conn.commit()
         conn.close()

@@ -20,24 +20,10 @@ from clean import annotation
 annotation.annotate()
 
 ########################################################
-# unpack tokenized sentences and postags
+# work on frequency analysis for words
 ########################################################
 
 # import functions
-from unpack import unpack
-from db import database
-
-# db-related stuff
-select_statement = ("SELECT id, postagged FROM songs WHERE language IS 'en';")
-db = database.Database()
-conn = db.get_connection()
-cur = conn.cursor()
-cur.execute(select_statement)
-conn.close()
-test = cur.fetchall()
-
-# define object to be unpacked, ie postagged lyrics
-push = [el[1] for el in test]
-
-# no other input will imply parallel computation
-out = unpack.unpack(push)
+from freq import freqAnalysis
+# run in parallel manner
+freqAnalysis.frequency()

@@ -7,10 +7,10 @@ import multiprocessing
 from multiprocessing import Pool
 
 def _unpack(do):
-    work = [ast.literal_eval(el) for el in do]
+    work = ast.literal_eval(do)
     return work
 
-def unpack(packed, nocores = None, chunksize = 5000):
+def unpack(packed, nocores = None, chunksize = 200):
     
     if nocores == 1 or multiprocessing.cpu_count() == 1:
         res = []
@@ -26,7 +26,6 @@ def unpack(packed, nocores = None, chunksize = 5000):
             nocores =  multiprocessing.cpu_count()-1
         
         with Pool(nocores) as p:
-           statements = list(tqdm(p.imap(_unpack, [packed[i:i+chunksize] for i in range(0, len(packed),chunksize)]), total=len(packed)/chunksize))
-        
-        statements = [item for sublist in statements for item in sublist]
+           statements = list(tqdm(p.imap(_unpack,packed,chunksize), total=len(packed)))
+
         return statements

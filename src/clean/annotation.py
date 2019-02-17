@@ -14,15 +14,13 @@ select_statement = ("SELECT id, lyrics FROM songs WHERE language IS 'en' AND pos
 update_statement = ("UPDATE songs SET postagged = ? WHERE id = ?;")
 
 def _anno(do):
-    res = []
     
-    for sql_id, lyrics in do:
-        test = lyrics.splitlines()
-        test = [re.sub(r'\([^)]*\)|\[[^)]*\]', '', l) for l in test]
-        test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]
-        res.append((str(test), sql_id))
+    sql_id, lyrics = do
+    test = lyrics.splitlines()
+    test = [re.sub(r'\([^)]*\)|\[[^)]*\]', '', l) for l in test]
+    test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]
         
-    return res
+    return (str(test), sql_id)
 
 def annotate(nocores=None, chunksize = 100):
 
@@ -65,9 +63,8 @@ def annotate(nocores=None, chunksize = 100):
         iterator = cur.fetchall()
 
         with Pool(nocores) as p:
-           statements = list(tqdm(p.imap_unordered(_anno, [iterator[i:i+chunksize] for i in range(0, len(iterator),chunksize)]), total=len(iterator)/chunksize))
+           statements = list(tqdm(p.imap_unordered(_anno, iterator, chunksize), total=len(iterator)))
         
-        statements = [item for sublist in statements for item in sublist]
         conn.executemany(update_statement, statements)
         conn.commit()
         conn.close()
