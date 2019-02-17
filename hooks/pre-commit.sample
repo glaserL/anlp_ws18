@@ -7,8 +7,13 @@
 #
 # To enable this hook, rename this file to "pre-commit".
 
-# execute our shell script here to update requirements
-cd hooks && ./check.sh && cd ..
+test=$(pip list | grep -F "pipreqs")
+
+if [ ${#test} -gt 0 ]
+then
+	# execute to update requirements
+	pipreqs --force .
+fi
 
 # add requirements.txt to stage for commit
 git add requirements.txt

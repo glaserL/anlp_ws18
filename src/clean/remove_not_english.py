@@ -42,15 +42,17 @@ try:
     iterator = tqdm(cur.fetchall())
 except ModuleNotFoundError: # ... I'll catch you. *badum tiss*
     iterator = cur.fetchall()
+
 for sql_id, lyrics in iterator: # remember, we only selected two values in the statement above!
     
-    # CHANGE BELOW TO DO STUFF
-    language = detect(lyrics[:1000]) # only get the first 1000 characters to save time
-    # CHANGE ABOVE TO DO STUFF
+    try:
+        language = detect(lyrics[:1000]) # only get the first 1000 characters to save time
+    except:
+        language = "NA"
 
     statements.append((language, sql_id)) # and add a tuple, containing all ? you had above
     # Once in a while we want to push results to the database:
-    if statements >= 5000: 
+    if len(statements) >= 5000:
         # combine the query with the values and push them to the database in a batch
         conn.executemany(update_statement, statements)
         conn.commit() # commit to the temporary changes we just made
