@@ -6,7 +6,7 @@ $ tree -d -L 1
 .
 ├── clean # detecting language and annotating lyrics (par/seq)
 ├── db # database management
-├── freq # refine lyrics and frequent words (par/seq)
+├── freq # refine lyrics and frequent words (par)
 ├── scrape # data-scraping
 ├── split # split data into training/test/validation sets
 ├── tmp # old or temporary scripts
