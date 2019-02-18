@@ -1,34 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# dependencies
 import ast
 import multiprocessing
+from db import database
 from tqdm import tqdm
 from multiprocessing import Pool
 from nltk.corpus import stopwords
-from nltk.corpus import wordnet
 from nltk.stem.wordnet import WordNetLemmatizer
 from collections import Counter
-from db import database
 
-# engineer statements
 select_statement = ("SELECT id, postagged FROM songs WHERE language IS 'en' AND frequency IS NULL")
 update_statement = ("UPDATE songs SET frequency = ? WHERE id = ?;")
 lemmatizer = WordNetLemmatizer()
 
-# source https://stackoverflow.com/a/15590384
+# modified, source https://stackoverflow.com/a/15590384
 def _get_wordnet_pos(treebank_tag):
     if treebank_tag.startswith('J'):
-        return wordnet.ADJ
+        return "a"
     elif treebank_tag.startswith('V'):
-        return wordnet.VERB
+        return "v"
     elif treebank_tag.startswith('N'):
-        return wordnet.NOUN
+        return "n"
     elif treebank_tag.startswith('R'):
-        return wordnet.ADV
+        return "r"
     else:
-        return wordnet.NOUN
+        return "n"
 
 def _freq(do):
     sql_id, tokens = do
@@ -43,12 +40,10 @@ def _freq(do):
 def frequency(nocores=None, chunksize = 100):
     if nocores == None:
         nocores =  multiprocessing.cpu_count()-1
-    # initialize connection
     db = database.Database()
     conn = db.get_connection()
     cur = conn.cursor()
     cur.execute(select_statement)
-    statements = []
     iterator = cur.fetchall()
     with Pool(nocores) as p:
        statements = list(tqdm(p.imap_unordered(_freq,iterator,chunksize), total=len(iterator)))

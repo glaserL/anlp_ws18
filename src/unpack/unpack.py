@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import ast
-from tqdm import tqdm
 import multiprocessing
+from tqdm import tqdm
 from multiprocessing import Pool
 
 def _unpack(do):
