@@ -2,7 +2,6 @@
 
 ```shell
 $ tree -d -L 1
-
 .
 ├── avg_word_length # word length calculation
 ├── clean # detect language and POS tag
