@@ -35,14 +35,21 @@ def main(args):
     # genres = [row[0] for row in cur.fetchall()]
     genres = args.genre
     for genre in genres:
-        cur.execute("SELECT id, genius_url FROM songs WHERE lyrics IS NULL AND genre = '%s';" % genre) # grab stuff that not filled
+        cur.execute("SELECT id, genius_url FROM songs WHERE lyrics IS NULL AND genre = '%s' ORDER BY id DESC;" % genre) # grab stuff that not filled
+        responses = list(cur.fetchall())
+        print("Got %s empty rows." % len(responses))
+        block_length = len(responses)/args.machines
+        start = int(block_length * args.id)
+        end = int(block_length * (args.id + 1))
+        print("Machine %s, scraping range %s to %s (%s total)." %
+                (args.id, start, end, len(responses)))
         try:
             from tqdm import tqdm
-            iterator = tqdm(cur.fetchall())
+            iterator = tqdm(responses[start:end])
         except ModuleNotFoundError:
-            iterator = cur.fetchall()
+            iterator = responses[start:end]
         sql_statement = "UPDATE songs SET lyrics = :lyrics, year = :year WHERE id = :id;"
-        print("Crawling %s lyrics now.." % genre)
+        print("Crawling %s %s lyrics now.." % (len(iterator), genre))
         for id, link in iterator:
             response = requests.get(link)
             if not response.ok:
@@ -52,14 +59,14 @@ def main(args):
             
             data['id'] = id
             statements.append(data)
-            if len(statements) > 2000:
+            if len(statements) > 200:
                 connection = database.get_connection()
                 connection.executemany(sql_statement, statements)
                 connection.commit()
                 statements.clear()
             time.sleep(0.1) # to not spam genius too much
-            if len(statements) % 25 == 0:
-                waittime = random.uniform(0.5,10) # have it seem like more a "human" interaction
+            if len(statements) % 40 == 0:
+                waittime = random.uniform(0.5,7) # have it seem like more a "human" interaction
                 time.sleep(waittime)
         
     connection.executemany(sql_statement, statements) # clearup
@@ -70,5 +77,9 @@ if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Params')
     parser.add_argument('-g','--genre', nargs="*",
                         help = "How many songs to get per artist")
+    parser.add_argument("-m","--machines", default = 1, type = int,
+                        help = "How many different machines this will run on")
+    parser.add_argument("-i","--id", default = 0, type = int,
+                        help = "Which id this machine holds")
     args = parser.parse_args()
     main(args)
