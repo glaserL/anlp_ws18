@@ -12,6 +12,20 @@ $ ./init.sh
 
 This process essentially downloads lyrics databases from git lfs and moves a pre-commit hook into your local `.git/hooks` folder.
 
+## Overview of directories
+
+```shell
+$ tree -d -L 1
+.
+├── data # storage of large data
+├── docs # documentation on project
+├── hooks # github hooks for automation
+├── src # source code, classes/functions
+└── tmp # temporary or old scripts
+
+5 directories
+```
+
 ## Workflow
 
 <img src = "/docs/img/flowchart.png" width = "800">
