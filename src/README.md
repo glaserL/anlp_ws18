@@ -2,15 +2,18 @@
 
 ```shell
 $ tree -d -L 1
-
 .
-├── clean # detecting language and annotating lyrics (par/seq)
+├── avg_word_length # word length calculation
+├── clean # detect language and POS tag
 ├── db # database management
-├── freq # refine lyrics and frequent words (par)
-├── scrape # data-scraping
-├── split # split data into training/test/validation sets
-├── tmp # old or temporary scripts
-└── unpack # unpack db-string and convert to pythonic format (par/seq)
+├── egocentrism # egocentric analysis
+├── freq # word frequency
+├── non_std_words # non standard word frequency
+├── scrape # data scraping
+├── split # splitting data into train/test
+├── tmp # temporary scripts
+├── ttr # type-token-ratio
+└── unpack # unpack from string to pythonic
 
-7 directories
+11 directories
 ```
