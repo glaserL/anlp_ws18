@@ -1,85 +1,105 @@
-import sqlite3 as sqlite
 import argparse
+from tqdm import tqdm
+import sqlite3 as sqlite
+
 
 def main(args):
-    source_conn = sqlite.connect(args.source_path)
-    target_conn = sqlite.connect(args.source_path)
+    s_conn = sqlite.connect(args.source)
+    t_conn = sqlite.connect(args.target)
 
-    # first, we grab all written lyrics from the source database
-    # and store them in memory for easy access and sanity checks.
-    source_cur = source_conn.cursor()
-    source_select_query = "SELECT artist, title, lyrics, year FROM songs WHERE lyrics IS NOT NULL;"
-    source_cur.execute(source_select_query)
-    source_dict = {}
-    for artist, title, lyrics, year in source_cur.fetchall():
-        if (artist, title) in source_dict.keys():
-            if args.dry:
-                print("WARNING! DOUBLE ID WHEN READING (%s, %s)" % (artist, title))
-        source_dict[(artist, title)] = (artist, title, lyrics, year)
-    print("Loaded %s entries from source database." % (
-                    len(source_dict)))
-    # then, write them to the database, also checking for missings,
-    # doubles or inconsistent data.
-    target_cur = target_conn.cursor()
+    print("Loading from source..")
+    s_select_statement = "SELECT artist, title, lyrics, year, genre, genius_url FROM songs WHERE lyrics IS NOT NULL;"
+    s_cur = s_conn.cursor()
+    s_cur.execute(s_select_statement)
+
+    s_dict = {}
+    for artist, title, lyrics, year, genre, url in s_cur.fetchall():
+        if not args.silent and (artist, title) in s_dict.keys():
+            print("WARNING CONFLICT %s, %s." % (artist,title))
+        s_dict[(artist,title)] = (artist, title, lyrics,year, genre, url)
+    
+    print("DONE.")
+    s_conn.close()
+    del s_conn
+    t_select_statement = "SELECT artist, title FROM songs"
     if args.dry:
-        target_select_query = "SELECT artist, title, lyrics FROM songs;"
-        target_cur.execute(target_select_query)
-        for target_artist, target_title, target_lyrics in target_cur.fetchall():
-            if (target_artist, target_title) in source_dict.keys():
-                source_artist, source_title, source_lyrics, source_year = source_dict[(target_artist, target_title)]
-                del source_dict[(target_artist, target_title)]
-                if source_artist == target_artist and source_title == target_title and not args.silent:
-                    print("(Writing) %s by %s (%s): %s.." % (target_title,
-                                                            target_artist,
-                                                            source_year,
-                                                            source_lyrics[:40]))
-                if source_artist != target_artist:
-                    print("MISMATCH artist! source: %s, target: %s." % (source_artist, target_artist))
-                if source_title != target_title:
-                    print("MISMATCH title! source: %s, target: %s." % (source_title, target_title))
-        if len(source_dict):
-            print("LEFTOVER DATA, %s SOURCE ENTRIES. Possibly you wrote that already?" % len(source_dict))
+        t_cur = t_conn.cursor()
+        t_cur.execute(t_select_statement)
+    
+        for t_artist, t_title in t_cur.fetchall():
+            if (t_artist, t_title) in s_dict.keys():
+                s_artist, s_title, s_lyrics, s_year, s_genre, s_url = s_dict[(t_artist, t_title)]
+                if s_artist == t_artist and s_title == t_title:
+                    print("(Writing) %s - %s (%s): %s.." % (
+                                s_artist, s_title, s_year, s_lyrics[:40] 
+                    ))
+                else:
+                    print("WARNING MISSMATCH")
     else:
-        target_cur.close()
-        source_conn.close()
-        source_conn = sqlite.connect(args.source_path)
-        target_cur = source_conn.cursor()
-        sql_update_statement = "UPDATE songs SET lyrics = ?, year = ? WHERE artist = ? AND title = ?;"
-        statements = []
-        target_select_query = "SELECT artist, title FROM songs;"
-        target_cur.execute(target_select_query)
-        
+        sql_statements = []
+        # t_update_statement = "UPDATE songs SET year = ?, lyrics = ? WHERE artist = ? AND title = ?;"
+        t_insert_statement = ("INSERT INTO songs VALUES(NULL, :title, :artist, :year, :genre, :url, :lyrics, " 
+    "NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);")
+        t_cur = t_conn.cursor()
+        # t_cur.execute(t_select_statement)
+        # print("grabbed rows from target")
         try:
             from tqdm import tqdm
-            iterator = tqdm(list(target_cur.fetchall()))
+            iterator = tqdm(s_dict.keys())
+            # for a,b in iterator:
+            #     print(a,b)
+            # print("Iterator %s." % type(iterator))
         except ModuleNotFoundError:
-            iterator = list(target_cur.fetchall())
-        for artist, title in iterator:
-            if (artist, title) in source_dict.keys():
-                artist, title, lyrics, year = source_dict[(artist, title)]
-                statements.append((lyrics, year, artist, title))
-                if len(statements) > 5000:
-                    print("Writing right now")
-                    target_conn.executemany(sql_update_statement, statements)
-                    target_conn.commit()
-                    statements.clear()
-                    print("%s\r" % (10*" "))
-                if len(statements) % 500 == 0:
-                    print(".",end="")
-        target_conn.executemany(sql_update_statement, statements)
-        target_conn.commit()
-        target_conn.close()
-    print("weird endless loop")
+            iterator = s_dict.keys()
+        # t_cur.close()
+        # t_conn.commit()
+        # t_conn.close()
+        # print("Closed database")
+        # del t_conn
+        # print("Reopening")
+        # t_conn = sqlite.connect(args.target)
+        # t_cur = t_conn.cursor()
+        print("Starting")
+        c = 0
+        for t_a,t_t in iterator:
+            # print(".", end="")
+            if (t_a, t_t) in s_dict.keys():
+                s_artist, s_title, s_lyrics, s_year, s_genre, s_url = s_dict[(t_a, t_t)]
+                write_data = {
+                    "artist" : t_a,
+                    "title" : t_t,
+                    "lyrics" : s_lyrics,
+                    "year" : s_year,
+                    "genre" : s_genre,
+                    "url" : s_url
+                    }
+                # print("Got shit from the in memory dict!")
+                # sql_statements.append((s_year, s_lyrics, t_a, t_t))
+                sql_statements.append(write_data)
+                # print("Put shit in sql statements list!")
+                # if len(sql_statements) > 2001:
+                if c % 2000 == 0:
+                    t_cur.executemany(t_insert_statement, sql_statements) 
+                    sql_statements.clear()
+                    t_conn.commit()
+                c += 1
+        t_cur.executemany(t_insert_statement, sql_statements) 
+        sql_statements.clear()
+        t_conn.commit()
+        
 
 if(__name__ == "__main__"):
     parser = argparse.ArgumentParser(description='Params')
-    parser.add_argument('-s','--source_path', required = True,
-                        help = 'Where to pull from')
-    parser.add_argument('-t', '--target_path', required = True,
-                        help = 'where to write to')
-    parser.add_argument('--dry', action = 'store_true',
-                        help = 'Just print, dont write.')
+    parser.add_argument("-s", "--source", type = str,
+                        required = True, help = "")
+    parser.add_argument("-t", "--target", type = str,
+                        required = True,help = "")
+    parser.add_argument('--dry', action ="store_true",
+                        help = "Won't write, just print.")
     parser.add_argument("--silent", action = 'store_true',
-                        help = 'Only prints errors.')
+                        help = "Not too many prints")
+    parser.add_argument("-n","--number_of_songs", type = int, default = 50,
+                        help = "How many songs to get per artist")
+    parser.add_argument('-g','--genre', nargs="*")
     args = parser.parse_args()
     main(args)
