@@ -26,7 +26,7 @@ def extract_data_from_HTML(html):
 
 
 def main(args):
-    database = db.Database(os.path.dirname(os.path.abspath(__file__))+"/db/database_temp.db")
+    database = db.Database()
     connection = database.get_connection()
     statements = []
     # prettify output
