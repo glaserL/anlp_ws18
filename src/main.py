@@ -34,7 +34,6 @@ freqAnalysis.frequency()
 
 # import functions
 from avg_word_length import avg_word_length
-
 # run
 avg_word_length.word_length_update()
 
@@ -44,7 +43,6 @@ avg_word_length.word_length_update()
 
 # import functions
 from non_std_words import non_std_words
-
 # run
 non_std_words.non_std_update()
 
@@ -54,7 +52,6 @@ non_std_words.non_std_update()
 
 # import function
 from egocentrism import egocentrism
-
 #run
 egocentrism.egocentrism_update()
 
@@ -64,6 +61,5 @@ egocentrism.egocentrism_update()
 
 # import function
 from ttr import type_token_ratio
-
 #run
 type_token_ratio.ttr_update()
