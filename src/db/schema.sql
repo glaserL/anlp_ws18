@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS songs (
  avg_word_length REAL,
  non_std_words REAL,
  ttr REAL,
- lexical_density REAL
+ lexical_density REAL,
+ egocentrism REAL
 );
 
 CREATE TABLE IF NOT EXISTS scrape (
