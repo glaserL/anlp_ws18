@@ -1,2 +1,6 @@
 # files for mood analysis
 MoodyLyrics/
+
+# db files
+*.db
+!database.db
