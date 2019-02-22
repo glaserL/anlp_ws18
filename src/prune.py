@@ -29,7 +29,6 @@ def type_token_ratio(elem):
         ttr = (len(ttr_dict) / sum(ttr_dict.values()))*100
     except:
         ttr = -1
-        
     if ttr != -1:
         return (ttr, elem[0])
     else:
