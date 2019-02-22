@@ -1,7 +1,6 @@
-from db import database
 import ast
+from db import database
 from collections import defaultdict
-
 
 def ttr_update():
     """
@@ -25,7 +24,6 @@ def ttr_update():
 
     return
 
-
 def type_token_ratio(work):
     """
     Calculates the type token ratio of the songs from the database
@@ -45,7 +43,10 @@ def type_token_ratio(work):
             word = tuples[0]
             ttr_dict[word] += 1
 
-        ttr = (len(ttr_dict) / sum(ttr_dict.values()))*100
+        try:
+            ttr = (len(ttr_dict) / sum(ttr_dict.values()))*100
+        except:
+            ttr = -1
         ttr_db.append((ttr, elem[0]))
 
     return ttr_db

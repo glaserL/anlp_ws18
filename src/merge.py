@@ -2,7 +2,6 @@ import argparse
 from tqdm import tqdm
 import sqlite3 as sqlite
 
-
 def main(args):
     s_conn = sqlite.connect(args.source)
     t_conn = sqlite.connect(args.target)

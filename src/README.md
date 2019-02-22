@@ -13,7 +13,8 @@ $ tree -d -L 1
 ├── split # splitting data into train/test
 ├── tmp # temporary scripts
 ├── ttr # type-token-ratio
-└── unpack # unpack from string to pythonic
+├── unpack # unpack from string to pythonic
+└── vis # visualize data
 
-11 directories
+12 directories
 ```

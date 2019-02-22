@@ -17,3 +17,7 @@ __MACOSX
 
 # database files
 *.db
+
+# R files
+*.Rhistory
+*.Rda
