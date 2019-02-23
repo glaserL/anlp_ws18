@@ -51,7 +51,9 @@ def non_std_words(work):
             else:
                 not_word_count += 1
 
-        non_std_word.append((word_count / not_word_count, elem[0]))
+        non_std_word.append((not_word_count/(not_word_count+word_count), elem[0]))
 
     return non_std_word
+
+                            
 
