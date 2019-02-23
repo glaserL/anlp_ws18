@@ -16,7 +16,7 @@ c <- p3[,2]
 ls1 <- list("<=2000" = a,"2001-2010" = b,"2011-2019" = c)
 
 # mapping to combine country/rock, as well as hiphop groups
-ls1 <- sapply(ls1, function(x) return(c("country" = x[1],"hip" =  x[2], "pop" = x[3])))
+ls1 <- sapply(ls1, function(x) return(c("country" = x[1], "hip" =  x[2], "pop" = x[3])))
 ls1 <- melt(ls1)
 colnames(ls1) <- c("genre", "year", "frequency")
 

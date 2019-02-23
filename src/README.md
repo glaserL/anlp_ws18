@@ -10,11 +10,12 @@ $ tree -d -L 1
 ├── freq # word frequency
 ├── non_std_words # non standard word frequency
 ├── scrape # data scraping
+├── sentiment # vader sentiment analysis
 ├── split # splitting data into train/test
 ├── tmp # temporary scripts
 ├── ttr # type-token-ratio
 ├── unpack # unpack from string to pythonic
 └── vis # visualize data
 
-12 directories
+13 directories
 ```

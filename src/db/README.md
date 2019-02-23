@@ -2,19 +2,6 @@
 
 * Short explanation how to interface with our data
 
-## Setup
-You should have our 'lyrics.csv' somewhere and unpacked (default path is '/data/lyrics.csv'). If you want to follow all defaults, then call:
-
-```shell
-$ python3 db/init_database.py
-```
-
-If desired, you can the paths to csv data, the `.db` database and `.sql` schema:
-
-```
-$ python3 db/init_database.py -c path/to/csv -d path/to/db -s path/to/schema
-```
-
 ## Querying (Simple, Tight)
 In case you're unfamiliar with SQL, you can import the database pseudo interface.
 e.g. when your script sits in `src/`:

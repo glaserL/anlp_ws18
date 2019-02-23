@@ -68,5 +68,6 @@ sentiment.senti()
 # prune database by adjusting/adding ttrs
 ########################################################
 
+# run prune pipeline alongside main
 import os
 os.system("python3 prune.py")

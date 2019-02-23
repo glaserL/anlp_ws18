@@ -8,7 +8,7 @@ from db import database
 from tqdm import tqdm
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-select_statement = "SELECT id, lyrics FROM songs;"
+select_statement = "SELECT id, lyrics FROM songs WHERE sentiment IS NULL;"
 update_statement = "UPDATE songs SET sentiment = ? WHERE id = ?;"
 analyzer = SentimentIntensityAnalyzer()
 
