@@ -29,7 +29,7 @@ def type_token_ratio(elem):
         ttr = (len(ttr_dict) / sum(ttr_dict.values()))*100
     except:
         ttr = -1
-    if ttr != -1:
+    if ttr != -1 and ttr <= 85:
         return (ttr, elem[0])
     else:
         return None
@@ -42,6 +42,7 @@ db = database.Database()
 conn = db.get_connection()
 cur = conn.cursor()
 cur.execute("DELETE FROM songs WHERE id NOT IN (SELECT MIN(id) FROM songs GROUP BY artist, title);")
+cur.execute("DELETE FROM songs WHERE non_std_words <= 1.5;")
 cur.execute("VACUUM;")
 conn.commit()
 conn.close()
@@ -82,7 +83,7 @@ for i in range(len(select)):
     test1 = [g1, g2, g3]
     test2 = [len(g1), len(g2), len(g3)]
     mini = min(test2)
-    where = test2.index(mini)    
+    where = test2.index(mini)
     # perform ttr completely on smallest group and commit directly
     for el in test1[where]:
         sqlid, year, postag = el
@@ -94,7 +95,7 @@ for i in range(len(select)):
     bottom = len(statements)
     conn.executemany(update[i], statements)
     conn.commit()
-    statements.clear()    
+    statements.clear()
     # now perform ttr on remaining sets randomly
     for j in range(len(test1)):
         if j != where:
