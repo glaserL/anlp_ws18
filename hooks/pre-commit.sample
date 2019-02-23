@@ -7,7 +7,7 @@
 #
 # To enable this hook, rename this file to "pre-commit".
 
-test=$(pip list | grep -F "pipreqs")
+test=$(python3 -m pip list | grep -F "pipreqs")
 
 if [ ${#test} -gt 0 ]
 then
