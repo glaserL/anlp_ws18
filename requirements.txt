@@ -1,9 +1,9 @@
-langdetect==1.0.7
-nltk==3.3
 wordcloud==1.5.0
-requests==2.21.0
+nltk==3.3
 tqdm==4.29.1
+langdetect==1.0.7
 numpy==1.16.0
+requests==2.21.0
 Pillow==5.4.1
 beautifulsoup4==4.7.1
 pyenchant==2.0.0
