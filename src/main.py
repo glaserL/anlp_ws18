@@ -56,10 +56,17 @@ from egocentrism import egocentrism
 egocentrism.egocentrism_update()
 
 ########################################################
-# work on type token ratio for lyrics
+# work on sentiment analysis
 ########################################################
 
 # import function
-from ttr import type_token_ratio
+from sentiment import sentiment
 #run
-type_token_ratio.ttr_update()
+sentiment.senti()
+
+########################################################
+# prune database by adjusting/adding ttrs
+########################################################
+
+import os
+os.system("python3 prune.py")
