@@ -70,4 +70,4 @@ sentiment.senti()
 
 # run prune pipeline alongside main
 import os
-os.system("python3 prune.py")
+os.system("python3 prune.py")   
