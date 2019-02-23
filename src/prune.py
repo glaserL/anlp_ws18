@@ -35,6 +35,18 @@ def type_token_ratio(elem):
         return None
 
 ########################################################
+# removing duplicates from db
+########################################################
+
+db = database.Database()
+conn = db.get_connection()
+cur = conn.cursor()
+cur.execute("DELETE FROM songs WHERE id NOT IN (SELECT MIN(id) FROM songs GROUP BY artist, title);")
+cur.execute("VACUUM;")
+conn.commit()
+conn.close()
+
+########################################################
 # pipeline for pruning
 ########################################################
 
@@ -103,7 +115,7 @@ for i in range(len(select)):
     conn.close()
 
 ########################################################
-# vacuum empty spaces
+# delete rows w/o ttr and vacuum empty spaces
 ########################################################
 
 db = database.Database()
