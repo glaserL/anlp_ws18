@@ -66,7 +66,7 @@ for i in range(len(select)):
             g2.append(el)
         elif int(el[1]) <= 2000:
             g3.append(el)
-    del iterator    
+    del iterator
     test1 = [g1, g2, g3]
     test2 = [len(g1), len(g2), len(g3)]
     mini = min(test2)
@@ -99,7 +99,7 @@ for i in range(len(select)):
                 k += 1
             conn.executemany(update[i], statements)
             conn.commit()
-            statements.clear()    
+            statements.clear()
     conn.close()
 
 ########################################################

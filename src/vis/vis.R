@@ -30,8 +30,8 @@ dev.off()
 
 con <- dbConnect(RSQLite::SQLite(), "../db/database.db")
 
-p1 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year LIKE "199%" OR year IS "2000" GROUP BY genre;')
-p2 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year LIKE "200%" OR year IS "2010" GROUP BY genre;')
+p1 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year NOT LIKE "2%" OR year IS "2000" GROUP BY genre;')
+p2 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE (year LIKE "200%" OR year IS "2010") AND year IS NOT "2000" GROUP BY genre;')
 p3 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year LIKE "201%" AND year IS NOT "2010" GROUP BY genre;')
 q1 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year LIKE "200%" OR year LIKE "199%" OR year IS "2010" GROUP BY genre;')
 q2 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year LIKE "201%" AND year IS NOT "2010" GROUP BY genre;')
