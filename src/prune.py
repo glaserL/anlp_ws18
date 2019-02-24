@@ -126,3 +126,5 @@ cur.execute("DELETE FROM songs WHERE ttr IS NULL;")
 cur.execute("VACUUM;")
 conn.commit()
 conn.close()
+# final steps: prune via heuristics to remove outliers
+# this was done manually based on analyzing database
