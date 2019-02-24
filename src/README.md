@@ -6,6 +6,7 @@ $ tree -d -L 1
 ├── avg_word_length # word length calculation
 ├── clean # detect language and POS tag
 ├── db # database management
+├── delta # statistical change analysis
 ├── egocentrism # egocentric analysis
 ├── freq # word frequency
 ├── non_std_words # non standard word frequency
@@ -17,7 +18,7 @@ $ tree -d -L 1
 ├── unpack # unpack from string to pythonic
 └── vis # visualize data
 
-13 directories
+14 directories
 ```
 
 ## Pruning heuristics
