@@ -36,6 +36,6 @@ However, they included many duplicates, non-english songs, unusable metadata and
 
 * Removing non english songs using the python package `langdetect`
 * Removed meta annotations in the lyrics e.g. [chorus]
-* Merge the smallest genres, since they are similar anyhow (Rock'n'Roll & Pop)
-* Remove non sensical entries like "In Progress" or tracklists of albums. We found these were songs with TTR > 85.
+* Merge the smallest genres, since they are similar anyhow (Rock'n'Roll & Dance_Pop -> Pip)
+* Remove nonsensical entries like "In Progress" or tracklists of albums. We found these were songs with TTR > 85.
 * Remove non-english songs that weren't recognized by `langdetect`. We found these were songs with non-standard-words-ratio >= 0.4.
