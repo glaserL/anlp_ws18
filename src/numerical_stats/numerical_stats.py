@@ -42,7 +42,7 @@ def numerical_statistics():
             s1_vals, s2_vals, s3_vals = equal_len(s1_vals, s2_vals, s3_vals, min_len)
 
             # anova
-            anova_vals = anova(s1_vals, s2_vals, s3_vals)
+            f_anova, p_anova = anova(s1_vals, s2_vals, s3_vals)
 
             # post hoc: one tailed t=test
             tval12, tval23, pval12_onetailed, pval23_onetailed, correlation12, correlation23 = one_tailed_t(s1_vals,
@@ -54,15 +54,15 @@ def numerical_statistics():
                 s1_vals, s2_vals, s3_vals, min_len)
 
             # prepare for csv
-            rows.append([genre, min_len, feature, (mean1, sdv1), (mean2, sdv2), (mean3, sdv3), anova_vals,
-                         ("t-val:", tval12, "p-val:", pval12_onetailed), correlation12, effectsize12, interpretation12,
-                         ("t-val:", tval12, "p-val:", pval23_onetailed), correlation23, effectsize23, interpretation23])
+            rows.append([genre, min_len, feature, mean1, sdv1, mean2, sdv2, mean3, sdv3, f_anova, p_anova,
+                         tval12, pval12_onetailed, correlation12, effectsize12, interpretation12,
+                         tval23, pval23_onetailed, correlation23, effectsize23, interpretation23])
 
     conn.close()
-    header = ['Genre', 'Group size', 'Feature', 'Mean and standard deviation s1', 'Mean and standard deviation s2',
-              'Mean and standard deviation s3', 'Anova results', 'One tailed t-test s1 and s2', 'Correlation s1 s2',
-              'Effect size s1 s2', 'Interpretation effect size s1 s2', 'One tailed t-test s2 and s3',
-              'Correlation s2 s3', 'Effect size s2 s3', 'Interpretation effect size s2 s3']
+    header = ['Genre', 'Group size', 'Feature', 'mean s1', 'sdv s1', 'mean s2', 'sdv s2',
+              'mean s3', 'sdv s3', 'F-value ANOVA', 'p-value ANOVA', 't-test t-val s1/s2', 't-test p-val s1/s2',
+              'Correlation s1 s2', 'Effect size s1 s2', 'Interpretation effect size s1 s2', 't-test t-val s2/s3',
+              't-test p-val s2/s3', 'Correlation s2 s3', 'Effect size s2 s3', 'Interpretation effect size s2 s3']
     write_csv(header, rows)
 
     return
