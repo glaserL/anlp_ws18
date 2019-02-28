@@ -2,6 +2,10 @@ library(ggplot2)
 library(reshape2)
 library(RSQLite)
 
+######################################################
+# old freq distribution plot directly from db
+######################################################
+
 # make queries
 con <- dbConnect(RSQLite::SQLite(), "../db/database.db")
 p1 = dbGetQuery(con,'SELECT genre, COUNT(*) FROM songs WHERE year NOT LIKE "2%" OR year IS "2000" GROUP BY genre;')

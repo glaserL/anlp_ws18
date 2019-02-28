@@ -6,19 +6,18 @@ $ tree -d -L 1
 ├── avg_word_length # word length calculation
 ├── clean # detect language and POS tag
 ├── db # database management
-├── delta # statistical change analysis
 ├── egocentrism # egocentric analysis
 ├── freq # word frequency
 ├── non_std_words # non standard word frequency
+├── numerical_stats # statitics/vis on results
 ├── scrape # data scraping
 ├── sentiment # vader sentiment analysis
 ├── split # splitting data into train/test
 ├── tmp # temporary scripts
 ├── ttr # type-token-ratio
-├── unpack # unpack from string to pythonic
-└── vis # visualize data
+└── unpack # unpack from string to pythonic
 
-14 directories
+13 directories
 ```
 
 ## Pruning heuristics
@@ -36,6 +35,6 @@ However, they included many duplicates, non-english songs, unusable metadata and
 
 * Removing non english songs using the python package `langdetect`
 * Removed meta annotations in the lyrics e.g. [chorus]
-* Merge the smallest genres, since they are similar anyhow (Rock'n'Roll & Dance_Pop -> Pip)
+* Merge the smallest genres, since they are similar anyhow (Rock'n'Roll & Dance_Pop -> Pop)
 * Remove nonsensical entries like "In Progress" or tracklists of albums. We found these were songs with TTR > 85.
 * Remove non-english songs that weren't recognized by `langdetect`. We found these were songs with non-standard-words-ratio >= 0.4.
