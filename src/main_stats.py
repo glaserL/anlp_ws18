@@ -5,5 +5,5 @@
 # create spider plot
 ########################################
 
-from numerical_stats import vis
-vis.run("../data/img/spider.png")
+from numerical_stats import visualize_data
+visualize_data.run("../data/img/spider.png")
