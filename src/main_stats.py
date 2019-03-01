@@ -26,3 +26,10 @@ freq_stats.getFreqRefined(20)
 from numerical_stats import vis_freq
 vis_freq.makeBar("../data/img/freqbar.png")
 vis_freq.makeBarExtend("../data/img/freqbarExtend.png")
+
+########################################
+# create histogram visualization
+########################################
+from numerical_stats import visualize_distribution
+visualize_distribution.kaggle_histogram("../data/lyrics.csv")
+visualize_distribution.genius_histogram()
