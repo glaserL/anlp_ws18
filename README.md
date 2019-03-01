@@ -9,39 +9,7 @@
 This is a private repository for our ANLP group project. We like cheesy songs.
 
 # Overview
-For this project, we analyzed lyrics we collected from genius.com. We performed various cleaning, annotation and analytical methods on the collected data. To get a taste of our work before handing in our final papers, here some visualized results.
-
-
-## most frequent words per genre:
-We grouped our data in three by year. T1 = <1990, T2 = 2001-2010, T3 = 2011-2019.
-
-<img src = "data/img/freqbarExtend.png" width = "800">
-
-## Annotations
-
-As already mentioned, we performed a range of analysis on our data. Below shows a normalized spider plot for each of these metrics. The spider plot belows gives an overview of these for each unit. One inference we can draw from that is for example, that Hip-Hop is significantly more negative as other genres.
-
-Legend:
-
-| abbrev | metric |
-|---|---|
-|SEN|Sentiment value |
-|TTR| Type- Token-Ratio |
-|EGO| measure for egocentrism |
-|NSW| non-standard words |
-|AWL| average word length |
-
-<img src = "data/img/spider.png" width = "800">
-
-## Mean change between intervals
-<img src = "data/img/all_pvals.png" width = "800">
-
-
-## Collection Bias
-
-We also were successful in mitigating the temporal bias the original kaggle data had.
-
-<img src = "data/img/genius_histogram_line.png" width = 400><img src = "data/img/kaggle_histogram_line.png" width = 400>
+For this project, we analyzed lyrics we collected from genius.com. We performed various cleaning, annotation and analytical methods on the collected data. To get a taste of our work before handing in our final papers, see [Data Summarization](https://github.com/glaserL/anlp_ws18/tree/master/docs/summary). Feel free to also explore [data/img](https://github.com/glaserL/anlp_ws18/tree/master/data/img) for more visualizations.
 
 # Usage 
 ## Initialization
