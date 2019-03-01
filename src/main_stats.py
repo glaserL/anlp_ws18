@@ -5,8 +5,8 @@
 # create spider plot
 ########################################
 
-from numerical_stats import vis_spider
-vis_spider.run("../data/img/spider.png")
+from numerical_stats import visualize_spider
+visualize_spider.run("../data/img/spider.png")
 
 ########################################
 # create wordclouds
@@ -14,8 +14,8 @@ vis_spider.run("../data/img/spider.png")
 
 from numerical_stats import freq_stats
 freq_stats.getFreq(50)
-from numerical_stats import vis_freq
-vis_freq.makeWordCloud("../data/img/wordclouds.png")
+from numerical_stats import visualize_freq
+visualize_freq.makeWordCloud("../data/img/wordclouds.png")
 
 ########################################
 # create barplot
@@ -23,9 +23,9 @@ vis_freq.makeWordCloud("../data/img/wordclouds.png")
 
 from numerical_stats import freq_stats
 freq_stats.getFreqRefined(20)
-from numerical_stats import vis_freq
-vis_freq.makeBar("../data/img/freqbar.png")
-vis_freq.makeBarExtend("../data/img/freqbarExtend.png")
+from numerical_stats import visualize_freq
+visualize_freq.makeBar("../data/img/freqbar.png")
+visualize_freq.makeBarExtend("../data/img/freqbarExtend.png")
 
 ########################################
 # create histogram visualization
