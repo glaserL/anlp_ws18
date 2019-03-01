@@ -21,7 +21,7 @@ def kaggle_histogram(kaggle_path):
     if os.path.isfile(kaggle_path):
         my_dpi=180
         plt.style.use('ggplot')
-        plt.figure(figsize=(2000/my_dpi, 1600/my_dpi), dpi=my_dpi)
+        plt.figure(figsize=(2200/my_dpi, 1600/my_dpi), dpi=my_dpi)
 
         data = pd.read_csv(kaggle_path, sep = ',', error_bad_lines = False)
         data.columns = ['id','title','year','artist','genre','ignore']
@@ -49,7 +49,7 @@ def kaggle_histogram(kaggle_path):
 def genius_histogram():
     my_dpi=180
     plt.style.use('ggplot')
-    plt.figure(figsize=(1800/my_dpi, 2000/my_dpi), dpi=my_dpi)
+    plt.figure(figsize=(2200/my_dpi, 1600/my_dpi), dpi=my_dpi)
 
     db = database.Database()
     conn = db.get_connection()
