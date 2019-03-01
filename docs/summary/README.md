@@ -37,7 +37,11 @@ Legend:
 
 ## Temporal changes in processed data
 
+To analyze temporal changes in our processed data, we used ANOVA and Welch's t-test to check for significant difference. Furthermore, we also utilized Cohen's d as an effect size metric. The means of our processed data and statistical test results have been visualized below.
+
 <img src = "/data/img/all_pvals.png" width = "800">
+
+Legend:
 
 | abbrev | metric |
 |---|---|
