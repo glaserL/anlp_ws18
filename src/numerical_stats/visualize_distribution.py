@@ -41,6 +41,7 @@ def kaggle_histogram(vis_folder, kaggle_path):
             plt.legend(loc = 'upper left')
             ax = plt.gca()
             ax.set_xlim(1965, 2020)
+        plt.title("Year Frequencies in Kaggle Data", fontsize = 20)
         plt.savefig(vis_folder+"/kaggle_histogram_line.png")
     else:
         print("No kaggle data found.")
@@ -78,6 +79,7 @@ def genius_histogram(vis_folder):
         plt.legend(loc = 'upper left')
         ax = plt.gca()
         ax.set_xlim(1965, 2020)
+        plt.title("Year Frequencies in Genius Data", fontsize = 20)
 
     plt.savefig(vis_folder+"/genius_histogram_line.png")
 
@@ -106,6 +108,7 @@ def kaggle_histogram_binned(vis_folder, kaggle_path):
     data = data.groupby(by = ["year", "genre"]).size().reset_index().groupby(by = ['year', 'genre'])[0].aggregate('first').unstack().reset_index().set_index('year').reindex(["<2000", "2001-2010", "2011-2019"])
     data.plot(y = ['Country', 'Hip-Hop', 'Pop'], kind = 'bar', ax = plt.gca())
 
+    plt.title("Time Span Frequencies in Kaggle Data", fontsize = 20)
     plt.savefig(vis_folder+"/kaggle_histogram_binned.png")
 
 def decadify(x):
@@ -145,4 +148,5 @@ def genius_histogram_binned(vis_folder):
 
     new_counter.plot(y = ['Country', 'Hip-Hop', 'Pop'], kind = 'bar')
 
+    plt.title("Time Span Frequencies in Genius Data", fontsize = 20)
     plt.savefig(vis_folder+"/genius_histogram_binned.png")
