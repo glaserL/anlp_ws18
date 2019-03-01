@@ -30,6 +30,10 @@ visualize_freq.makeBarExtend("../data/img/freqbarExtend.png")
 ########################################
 # create histogram visualization
 ########################################
+
 from numerical_stats import visualize_distribution
-visualize_distribution.kaggle_histogram("../data/lyrics.csv")
-visualize_distribution.genius_histogram()
+visualize_distribution.kaggle_histogram("../data/img","../data/lyrics.csv")
+visualize_distribution.genius_histogram("../data/img")
+
+visualize_distribution.kaggle_histogram_binned("../data/img", "../data/lyrics.csv")
+visualize_distribution.genius_histogram_binned("../data/img")
