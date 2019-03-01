@@ -9,9 +9,9 @@
 This is a private repository for our ANLP group project. We like cheesy songs.
 
 # Overview
-For this project, we analyzed lyrics we collected from genius.com. We performed various cleaning, annotation and analytical methods on the collected data. To get a taste of our work before handing in our final papers, see [Data Summarization](https://github.com/glaserL/anlp_ws18/tree/master/docs/summary). Feel free to also explore [data/img](https://github.com/glaserL/anlp_ws18/tree/master/data/img) for more visualizations.
+For this project, we analyzed lyrics we collected from genius.com. We performed various cleaning, annotation and analytical methods on the collected data. To get a taste of our work before handing in our final papers, see [Data Summarization](/docs/summary/README.md). Feel free to also explore [data/img](https://github.com/glaserL/anlp_ws18/tree/master/data/img) for more visualizations.
 
-# Usage 
+# Usage
 ## Initialization
 
 After cloning this repository, you would need to initialize it to prepare for testing:
@@ -63,8 +63,8 @@ To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CO
 | Dec. 14, 2018 | Group contract due |
 | Jan. 11, 2019 | Planning paper due |
 | Feb. 1, 2019 | Project presentation |
-| **Mar. 1, 2019** | **Final project due** |
-| Mar. 8, 2019 | Project report due |
+| Mar. 1, 2019 | Final project due |
+| **Mar. 8, 2019** | **Project report due** |
 
 ### Further Contents
 
@@ -72,11 +72,9 @@ To aid this process, we can refer to the some guidelines in [CONTRIBUTING.md](CO
 
 2. [Meeting Protocols](docs/protocols.md)
 
-3. [Data Summarization](https://github.com/glaserL/anlp_ws18/tree/master/docs/summary)
+3. [Shared Todo List](docs/todos.md)
 
-4. [Shared Todo List](docs/todos.md)
-
-5. [Shared Bibliography](docs/bibtex.bib)
+4. [Shared Bibliography](docs/bibtex.bib)
 
 ### Authors
 
