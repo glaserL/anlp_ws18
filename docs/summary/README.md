@@ -1,4 +1,4 @@
-# Data summarization
+# Data Summarization
 
 Our data was grouped into the three following groups based on the year of publishing: T1 = <1990, T2 = 2001-2010, T3 = 2011-2019.
 
@@ -22,7 +22,9 @@ We were successful in mitigating the temporal bias the original kaggle data had.
 
 We performed a range of analysis on our data. Below shows a normalized/projected spider plot for each of these metrics. The spider plot belows gives an overview of these for each unit. One inference we can draw from that is for example, that Hip-Hop is significantly more negative as other genres.
 
-Legend:
+<img src = "/data/img/spider.png" width = "800">
+
+**Legend:**
 
 | abbrev | metric |
 |---|---|
@@ -33,19 +35,17 @@ Legend:
 | NSW | Non-standard words |
 | AWL | Average word length |
 
-<img src = "/data/img/spider.png" width = "800">
-
 ## Temporal changes in processed data
 
 To analyze temporal changes in our processed data, we used ANOVA and Welch's t-test to check for significant difference. Furthermore, we also utilized Cohen's d as an effect size metric. The means of our processed data and statistical test results have been visualized below.
 
 <img src = "/data/img/all_pvals.png" width = "800">
 
-Legend:
+**Legend:**
 
 | abbrev | metric |
 |---|---|
 | * | p <= 0.05 |
 | ** | p <= 0.01 |
-| *** | P <= 0.001 |
+| *** | p <= 0.001 |
 | † | Significant effect size |
