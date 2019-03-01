@@ -5,8 +5,12 @@ import argparse
 import time
 import os
 import random
+import sys
 
 def extract_data_from_HTML(html):
+    """Downloads the song's entire html from genius (yes, quite a limited API)
+    and parses lyrics and year from it.
+    """
     page = BeautifulSoup(html, "html.parser")
     data = {}
     try:
@@ -26,23 +30,28 @@ def extract_data_from_HTML(html):
 
 
 def main(args):
+    # Setup
     database = db.Database()
     connection = database.get_connection()
     statements = []
-    # prettify output
     cur = connection.cursor()
-    # cur.execute("SELECT DISTINCT genre FROM songs;")
-    # genres = [row[0] for row in cur.fetchall()]
+    
+    if args.genre is None:
+        print("Please provide genre names.")
+        sys.exit(1)
     genres = args.genre
+
     for genre in genres:
         cur.execute("SELECT id, genius_url FROM songs WHERE lyrics IS NULL AND genre = '%s' ORDER BY id DESC;" % genre) # grab stuff that not filled
         responses = list(cur.fetchall())
         print("Got %s empty rows." % len(responses))
+        # Figure out which block to work on, based on machine ids and # of machines
         block_length = len(responses)/args.machines
         start = int(block_length * args.id)
         end = int(block_length * (args.id + 1))
         print("Machine %s, scraping range %s to %s (%s total)." %
                 (args.id, start, end, len(responses)))
+        
         try:
             from tqdm import tqdm
             iterator = tqdm(responses[start:end])
@@ -50,16 +59,18 @@ def main(args):
             iterator = responses[start:end]
         sql_statement = "UPDATE songs SET lyrics = :lyrics, year = :year WHERE id = :id;"
         print("Crawling %s %s lyrics now.." % (len(iterator), genre))
+        
         for id, link in iterator:
             response = requests.get(link)
-            if not response.ok:
-                print(response)
+            if not response.ok: # Some links collected were forbidden or invalid
+                continue
             raw_html = response.text
             data = extract_data_from_HTML(raw_html)
             
             data['id'] = id
             statements.append(data)
             if len(statements) > 200:
+                # save quite often to keep loss on restart at a minimum
                 connection = database.get_connection()
                 connection.executemany(sql_statement, statements)
                 connection.commit()
