@@ -214,4 +214,3 @@ def write_csv(header, rows):
         for row in rows:
             csv_writer.writerow(row)
     return
-
