@@ -2,4 +2,5 @@
 *.aux
 *.log
 *.gz
+*.bbl
 flowchart.pdf
