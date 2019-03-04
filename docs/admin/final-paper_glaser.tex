@@ -1,0 +1,164 @@
+
+%• What did you personally contribute to the project?
+
+%The project report should stand on its own (i.e., it should not assume familiarity with your project or with your planning paper), but you may reuse material from your previous paper if you want. It is both a report on what you did, as well as a reflection of what you learned in your project.
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{acl2018}
+%\usepackage{fancyhdr}
+%\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\usepackage{graphicx} % for imports
+\usepackage{subcaption} % for figures
+\usepackage{cleveref} % better references
+\usepackage{csquotes} % enquote
+\usepackage[mode=buildnew]{standalone}
+\graphicspath{{../../data/img/}}
+\usepackage{pgfplots} % plotting pgf format directly
+% citations
+
+\usepackage{adjustbox}
+\title{Project Report}
+
+\author{Luis Glaser\\
+  registration number 800140 \\
+  Potsdam University \\
+  {\tt Luis.Glaser@uni-potsdam.de} \\
+  \\
+  Advanced Natural Language Processing (WS 2018/2019) \\
+  Dr. Tatjana Scheffler \\
+  \\}
+
+\date{01. March 2019}
+\usepackage{url}
+\makeatletter
+\tikzset{
+    database/.style={
+        path picture={
+            \draw (0, 1.5*\database@segmentheight) circle [x radius=\database@radius,y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius, 0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius,-0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius,1.5*\database@segmentheight) -- ++(0,-3*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius] -- ++(0,3*\database@segmentheight);
+        },
+        minimum width=2*\database@radius + \pgflinewidth,
+        minimum height=3*\database@segmentheight + 2*\database@aspectratio*\database@radius + \pgflinewidth,
+    },
+    database segment height/.store in=\database@segmentheight,
+    database radius/.store in=\database@radius,
+    database aspect ratio/.store in=\database@aspectratio,
+    database segment height=0.1cm,
+    database radius=0.25cm,
+    database aspect ratio=0.35,
+}
+\makeatother
+%=====================================
+% BEGIN DOCUMENT
+%=====================================
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+%\pagestyle{fancy}
+\section{Introduction}
+Together with Atreya Shankar and Juliane Hanel I worked on music lyrics. The original motivation was our shared interest in music and the different social and political dimension that can be expressed through it. Although music also consists of the audio signal, lyrics do play an important role when analysing. E.g. \citet{DBLP:conf/coling/FellS14} noted, that considering lyrics in recommendation engines does increase their quality.
+%=====================================
+% SUMMARY
+%=====================================
+This final paper will be split in two major parts: First, I will elaborate our method, lay out our results and point out our findings.
+
+The second part will be focussed on the project's effects, how I contributed to it and what I learned from it.
+\section{Project documentation}
+\begin{figure}
+\begin{adjustbox}{width=0.5\textwidth}
+    \begin{tikzpicture}[line width=1pt]
+% Nodes
+\node[inner sep=0pt] (wiki) at (0,6)
+    {\includegraphics[width=2cm]{wikipedia-logo-en.png}};
+\node[database,label=below:\texttt{SQLite3},database radius = 0.75cm, database segment height = 0.3cm] (db) at (2,0) {};
+
+\draw[->,line width=2,draw=blue!50] (wiki.south) to [out=265,in=160] (db);
+\node[inner sep=.1cm, align=center,fill=white] (expArtistlist) at (-1.3,4) {(1) scrape artist names \\ per genre};
+
+\node[] (genius) at (6,6)
+	{\Large \texttt{www.genius.com}};
+
+\draw[->,line width=2,draw=blue!50] (db.east) to [out=0,in=280](genius.south);
+\node[inner sep=.1cm, align=center,fill=white] (expArtistlist) at (6,3) {(2) query artist name};
+
+\draw[->,line width=2,draw=blue!50] (genius.west) to [out=220,in=90] (db.north);
+\node[inner sep=.1cm, align=center,fill=white] (expArtistlist) at (2.5,2.25) {(3) store lyrics \& metadata};
+\end{tikzpicture}
+\end{adjustbox}
+    \caption{Breakdown of data-scraping methodology using Wikipedia and the Genius API}	
+\end{figure}
+\subsection{Method}
+%What was the topic of your group’s project, your approach and main results?
+
+After removing clutter from our project, we decided to go after the following hypothesis:
+
+%TODO
+
+After a while working on our project, it became rather clear that the data collection would take more time than expected. We thus parallelised the workflow. We first agreed on what data attribute we will expect from the scraped data (e.g. lyrics, year, title) and what we would annotate ourselves (e.g. sentiment valence, type token ratio). Then we could already start creating those annotation pipelines based on a small sample dataset we created for development. This approach was successful, The annotation phase only took half a day and we were able to make up for the time lost with scraping.  
+
+\section{Reflection}
+
+\subsection{Personal Contribution}
+%\enquote{What did you personally contribute to the project?}
+
+Initially I thought I would spend more time with the annotation pipeline. However, Atreya and Juliane had no problems handling it, so my contribution on that part was kept to package recommendation and bug fixing in one instance.
+
+\subsection{Reflection on Learning Goals}
+% How did your project support you in obtaining your learning objectives (see planning paper)?
+In this section I will discuss how our project has helped me to fulfill my learning objectives. To shortly reiterate them: 
+
+The central goal our project was build towards, was getting hands-on experience with many of the methods we discussed in class. We didn't indent to study them in-depth, rather getting acquainted with them and then continue.
+Another personal learning goal was, to finally try out classifying political stance in text data, which I already wanted to do in my Bachelor's Thesis.
+
+To begin with the latter: Unfortunately, we had to scrap the political stance analysis, since getting the lyrics took too much time and effort. I am still interested and hope to try it out soon.
+
+\subsection{Main Take-Away and Reflection}
+% What are the main take-away messages from your project? What did you learn about your chosen topic?
+One simple but important take-away I had, was to think about the structure, content and distribution of data beforehand. In earlier project the \emph{just get everything} approach was viable. In this project however it wasn't, as there is a near infinite amount of lyrics to choose from. I should have limited the number of artists per genre beforehand. The List of HipHop Artists had TODO ZAHLEN which introduced an significant bias afterwards, just as we originally wanted to avoid. 
+
+Another experience I made was, that just there existing an API, doesn't make it easy, necessarily. The genius API is fairly limited, %TODO flowchart aus Präsi hier hin
+which introduced quite a number of problems. One was, that one could only query songs of a artist, given an artist id. information about genre, year or even a time span cannot be handled by the API. 
+Also the responses were rather sparse. There are only few useful fields as title, artist or collaborations. The biggest problem was, that there was no data on publication year available. Also the lyrics weren't directly returned, but a link to the lyrics. Thus, we had to download the html, parse it and find the lyrics and publication year from there. 
+This made it impossible to ensure the year-wise distribution beforehand. It also forced us to fully construct invalid entries, when the publication year wasn't even provided. 
+To conclude, I definitely underestimated the challenge to create a custom data set when the given api tools are crap and there too much shit to properly crawl it.
+
+
+
+\bibliography{../bibtex}
+\bibliographystyle{acl_natbib}
+
+
+%=====================================
+% RANDOM STATS FOR APPENDIX
+%=====================================
+\begin{table}
+\begin{tabular}{llll}
+\hline
+Genre & Wikipedia & genius ID & drop \\ \hline 
+Country & $1969$ & $1237$ & 0.39 \\
+Pop & $683$ & $349$ & 0.49 \\
+Hip Hop & $1370$ & $866$ & 0.37 \\ \hline
+\end{tabular}
+\caption{Artist change between wikipedia and genius}
+\label{tab:scrape:idscomp}
+\end{table}
+
+\Cref{tab:scrape:idscomp} shows an overview of artists that we collected from wikipedia and in turn how many we were able to find on genius. We can directly see a significant drop. This drop stems from multiple factors: Annotations in artist names on wikipedia ( \enquote{Torch (American)} and \enquote{Torch (German)}), bad encoding (\enquote{Cam'ron} being resolved as \enquote{Cam\%27ron}) or simple name missmatches (\enquote{B.o.B} on wikipedia, \enquote{BoB} on genius). Also, to save computation time, we only queried 20 results in search of an artist ID. This could result in returning song titles instead of artists before we could get a match, when artist names were common English words that could occur in titles (e.g. \enquote{Future}, \enquote{Bohemia} or \enquote{Choice}).
+
+
+
+
+\end{document}
