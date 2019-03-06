@@ -8,7 +8,7 @@ library(latex2exp)
 
 # use latex fonts
 # font_import()
-# par(family = "LM Roman 10")
+par(family = "LM Roman 10")
 
 ######################################################
 # retrieve distribution plot directly from db
