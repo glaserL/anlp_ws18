@@ -3,4 +3,8 @@
 *.log
 *.gz
 *.bbl
+*.blg
+*.out
+*.toc
 flowchart.pdf
+longtable.pdf
