@@ -79,6 +79,5 @@ p <- ggplot(ls1, aes(genre, frequency, fill = genre)) + geom_col(colour = "black
   theme_bw() + theme(text = element_text(size=20), legend.position = "none") + facet_grid(. ~ year, labeller = label_parsed) + 
   guides(fill=FALSE) + ylab("Frequency\n") + xlab("") + ylim(0,31000)
 q <- p +  scale_fill_brewer(palette="Dark2")
-grid::grid.text(unit(0.5,"npc"),unit(.98,'npc'),label = 'label at top', rot = 0) 
 print(q)
 dev.off()
