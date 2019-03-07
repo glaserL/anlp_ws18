@@ -30,9 +30,9 @@ def makeWordCloud(path):
                 d["can't"] = d.pop(key)
             elif key == "wo":
                 d["won't"] = d.pop(key)
-    title = [r'$T_1$',r'$T_2$',r'$T_3$']
+    title = [r'$T_1$ $[\leq 2000]$',r'$T_2$ $[2001-2010]$',r'$T_3$ $[2011-2019]$']
     my_dpi=200
-    fig = plt.figure(figsize=(1800/my_dpi, 1600/my_dpi), dpi=my_dpi)
+    fig = plt.figure(figsize=(1600/my_dpi, 1200/my_dpi), dpi=my_dpi)
     for i in range(len(k)):
         im = Image.open("../data/img/cloud.png")
         im = im.convert('L')
@@ -44,7 +44,7 @@ def makeWordCloud(path):
         ax = fig.add_subplot(3,3,i+1)
         ax.imshow(w)
         if i in [0,1,2]:
-            plt.title(title[i], size=17, color="black", y=1.1)
+            plt.title(title[i], size=13, color="black", y=1.1)
         if i == 0:
             ax.set_ylabel(r'\textbf{Country}', labelpad = 30, fontsize = 10)
         elif i == 3:
@@ -53,7 +53,7 @@ def makeWordCloud(path):
             ax.set_ylabel(r'\textbf{Hip-Hop}',labelpad = 30, fontsize = 10)
         ax.set_yticklabels([])
         ax.set_xticklabels([])
-        ax.get_xaxis().set_ticks([])
+        ax.get_xaxis().set_ticks([])    
         ax.get_yaxis().set_ticks([])
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
@@ -78,7 +78,7 @@ def makeBar(path):
                 d["can't"] = d.pop(key)
             elif key == "wo":
                 d["won't"] = d.pop(key)
-    title = [r'$T_1$',r'$T_2$',r'$T_3$']
+    title = [r'$T_1$ $[\leq 2000]$',r'$T_2$ $[2001-2010]$',r'$T_3$ $[2011-2019]$']
     color = ["blue", "orangered", "lightcoral"]
     maxi = []
     maxi.extend([1.1*max([item for el in k[:3] for item in list(el.values())])])
@@ -123,7 +123,7 @@ def makeBarExtend(path):
                 d["can't"] = d.pop(key)
             elif key == "wo":
                 d["won't"] = d.pop(key)
-    title = [r'$T_1$',r'$T_2$',r'$T_3$']
+    title = [r'$T_1$ $[\leq 2000]$',r'$T_2$ $[2001-2010]$',r'$T_3$ $[2011-2019]$']
     color = ["blue", "orangered", "lightcoral"]
     maxi = []
     maxi.extend([1.1*max([item for el in k[:3] for item in list(el.values())])])
