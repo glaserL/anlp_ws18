@@ -6,7 +6,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[hyperref]{acl2018}
 %\usepackage{fancyhdr}
-%\aclfinalcopy % Uncomment this line for the final submission
+\aclfinalcopy % Uncomment this line for the final submission
 %\def\aclpaperid{***} %  Enter the acl Paper ID here
 
 %\setlength\titlebox{5cm}
@@ -142,7 +142,7 @@ To work on more concrete topics, we initially agreed on three hypothesis we want
 Bearing these hypotheses in mind, this section will elaborate on how we collected our data (\Cref{sec:scraping}), what annotations we applied (\Cref{sec:annotations}) and what metrics we used to test our hypotheses (\Cref{sec:metrics}). 
 \subsection{Scraping}\label{sec:scraping}
 
-We initially planned, to use data from a kaggle competition \citep{kuznetsov_55000+_2017} for our analysis. However, it contained a significant bias to one specific year, as shown in \cref{fig:histograms:kaggle}. We thus decided to create the dataset on our own, using the popular site \url{genius.com}. There, users can create and annotate entries for lyrics collaboratively.
+We initially planned, to use data from a kaggle competition \citep{kuznetsov_55000+_2017} for our analysis. However, it contained a significant bias to one specific year, as shown in \cref{fig:histograms:kaggle}. We thus decided to create the dataset on our own, using the popular site \texttt{genius.com}. There, users can create and annotate entries for lyrics collaboratively.
 
 \begin{figure}[t!]
 \begin{adjustbox}{width=0.5\textwidth}
