@@ -50,3 +50,4 @@ def frequency(nocores=None, chunksize = 100):
     conn.executemany(update_statement, statements)
     conn.commit()
     conn.close()
+    return 0

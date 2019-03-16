@@ -1,13 +1,11 @@
 from db import database
 import ast
 
-
 def egocentrism_update():
     """
     Fetches all PoS-tagged lyrics without assigned egocentrism value from the database.
     Then calls the egocentrism function and updates the database with
     the resulting values for each song
-
     """
     db = database.Database()
     conn = db.get_connection()
@@ -21,9 +19,7 @@ def egocentrism_update():
     conn.executemany(update_statement, statements)
     conn.commit()
     conn.close()
-
-    return
-
+    return 0
 
 def egocentrism(work):
     """
@@ -38,7 +34,6 @@ def egocentrism(work):
     egocentrism_list = []
     first_person = ['i', 'me', 'my', 'mine', 'myself']
     second_person = ['you', 'your', 'yours', 'yourself']
-
     for elem in work:
         lyrics = [item for sublist in elem[1] for item in sublist]
         lyrics = [i for i in lyrics if i[0] not in [',', '.', "'", '?', '!', '’', '&', '#', ':']]
@@ -51,7 +46,4 @@ def egocentrism(work):
                 if tuples[0].lower() in second_person:
                     count_you += 1
         egocentrism_list.append((count_ego / count_you, elem[0]))
-
     return egocentrism_list
-
-

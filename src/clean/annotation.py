@@ -15,7 +15,7 @@ def _anno(do):
     sql_id, lyrics = do
     test = lyrics.splitlines()
     test = [re.sub(r'\([^)]*\)|\[[^]]*\]|\{[^}]*\}', '', l) for l in test]
-    test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]    
+    test = [nltk.pos_tag(nltk.word_tokenize(b)) for el in test for b in nltk.sent_tokenize(el) if el != ""]
     return (str(test), sql_id)
 
 def annotate(nocores=None, chunksize = 100):
@@ -45,3 +45,4 @@ def annotate(nocores=None, chunksize = 100):
         conn.executemany(update_statement, statements)
         conn.commit()
         conn.close()
+    return 0

@@ -2,13 +2,11 @@ from db import database
 import ast
 import enchant
 
-
 def non_std_update():
     """
     Fetches all PoS-tagged lyrics without assigned non-standard word ratio from the database.
     Then calls the non standard word function and updates the database with
     the resulting ratios for each song.
-
     """
     db = database.Database()
     conn = db.get_connection()
@@ -22,9 +20,7 @@ def non_std_update():
     conn.executemany(update_statement, statements)
     conn.commit()
     conn.close()
-
-    return
-
+    return 0
 
 def non_std_words(work):
     """
@@ -33,13 +29,11 @@ def non_std_words(work):
     word.
     The non-standard word ratio is the ratio of uncommon words to all words
     in a song.
-
     :param work: PoS tagged song lyrics from the database
     :return: list of tuples (song id, non_standard_word_ratio)
     """
     dictionary = enchant.Dict("en_US")
     non_std_word = []
-
     for elem in work:
         lyrics = [item for sublist in elem[1] for item in sublist]
         lyrics = [i for i in lyrics if i[0] not in [',', '.', "'", '?', '!', '’', '&', '#', ':']]
@@ -50,10 +44,5 @@ def non_std_words(work):
                 word_count += 1
             else:
                 not_word_count += 1
-
         non_std_word.append((not_word_count/(not_word_count+word_count), elem[0]))
-
     return non_std_word
-
-                            
-

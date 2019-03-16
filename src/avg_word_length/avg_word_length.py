@@ -1,19 +1,16 @@
 from db import database
 import ast
 
-
 """
 Computes the average word length for all songs in the lyrics data base
 adds the resulting values
 """
-
 
 def word_length_update():
     """
     Fetches all PoS-tagged lyrics without assigned average word length from the database.
     Then calls the average word length function and updates the database with
     the resulting values for each song
-
     """
     # get all english songs without avg_word_length from the data base
     db = database.Database()
@@ -28,9 +25,7 @@ def word_length_update():
     conn.executemany(update_statement, statements)
     conn.commit()
     conn.close()
-
-    return
-
+    return 0
 
 def avg_word_length(work):
     """
@@ -40,7 +35,6 @@ def avg_word_length(work):
     :return: list of tuples (song id, avg_word_length)
     """
     avg_length_db = []
-
     for elem in work:
         avg_len = 1
         lyrics = [item for sublist in elem[1] for item in sublist]
@@ -50,7 +44,4 @@ def avg_word_length(work):
             avg_len += len(tuples[0])
             lyr.append(tuples[0])
         avg_length_db.append(((avg_len / (len(lyrics)+0.0001)), elem[0]))
-
     return avg_length_db
-
-

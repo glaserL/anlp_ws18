@@ -18,14 +18,14 @@ def _lang(do):
         language = "NA"
     return (language, sql_id)
 
-def langUpdate(nocores = None, chunksize = 100):    
+def langUpdate(nocores = None, chunksize = 100):
     db = database.Database()
     conn = db.get_connection()
     cur = conn.cursor()
-    cur.execute(select_statement)        
+    cur.execute(select_statement)
     if nocores == 1 or multiprocessing.cpu_count() == 1:
         statements = []
-        iterator = tqdm(cur.fetchall())        
+        iterator = tqdm(cur.fetchall())
         for el in iterator:
             res = _lang(el)
             statements.append(res)
@@ -45,3 +45,4 @@ def langUpdate(nocores = None, chunksize = 100):
         conn.executemany(update_statement, statements)
         conn.commit()
         conn.close()
+    return 0
