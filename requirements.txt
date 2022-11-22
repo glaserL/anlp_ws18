@@ -7,7 +7,7 @@ nltk==3.4.5
 tqdm==4.29.1
 numpy==1.16.0
 pandas==0.24.1
-Pillow==8.3.2
+Pillow==9.3.0
 beautifulsoup4==4.7.1
 pyenchant==2.0.0
 vaderSentiment==3.2.1
